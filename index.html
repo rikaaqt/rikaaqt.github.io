@@ -192,7 +192,8 @@ html {
     width: 100%;
     /* display: contents; */
     height: 100%;
-    transition: opacity .3s ease
+    opacity: 0;
+    transition: opacity .2s ease-out
 }
 
 .icon-friends {
@@ -267,14 +268,16 @@ figcaption {
     left: 3%;
     transform: rotate(-30deg)
 }
-@supports not (clip-path:  shape(from 50% 91%,
-            line to 90% 50%,
-            arc to 50% 9% of 1%,
-            arc to 10% 50% of 1%)) {
-                .heartshaped {
-                    border-radius: 100%;
-                }
-            }
+
+@supports not (clip-path: shape(from 50% 91%,
+        line to 90% 50%,
+        arc to 50% 9% of 1%,
+        arc to 10% 50% of 1%)) {
+    .heartshaped {
+        border-radius: 100%;
+    }
+}
+
 .heartshaped {
     clip-path:
         shape(from 50% 91%,
@@ -287,12 +290,12 @@ figcaption {
 #cat {
     width: 25%;
     height: auto;
-    max-width:130px;
+    max-width: 130px;
 }
 
 #girl {
     top: 10%;
-    right:3%;
+    right: 3%;
     transform: rotate(30deg)
 }
 
@@ -343,9 +346,10 @@ figcaption {
 #buttons {
     display: block;
     place-content: center;
-    width:100%;
+    width: 100%;
     place-items: center;
-    place-self: center;    position: absolute;
+    place-self: center;
+    position: absolute;
     bottom: -93px;
     filter: hue-rotate(326deg);
 }
@@ -388,7 +392,8 @@ figcaption {
             .tab {
                 display: block !important;
             }
-            main {
+
+            #holder, .tab {
                 opacity: 1 !important
             }
         </style>
@@ -403,8 +408,8 @@ figcaption {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);
     background-size: 100vw 100vh;'></div>
     <main>
-        <div class="center cute" id="holder">
-            <div class="tab" id="home" style="display:block;opacity:0;transition: opacity .5s ease">
+        <div class="center cute" id="holder" style="opacity:0;transition: opacity .5s ease">
+            <div class="tab" id="home" style="display:block;">
                 <section class="sect">
                     <img src="https://addsoupbase.github.io/media/avatars/rikapika.webp" class="avatar" style="z-index: 2;">
                     <h1>RIKA PIKA</h1>
@@ -468,15 +473,15 @@ figcaption {
                     </div>
                 </section>
             </div>
-            <div id="buttons">
-                <button aria-selected="false" title="friends"
-                    class="icon-friends">
+            <div id="buttons" role="tablist">
+                <button role="tab" id="toggle-friends" aria-selected="false"
+                    title="friends" class="icon-friends">
                     <p class="buttondesc">friends</p>
-                </button><button aria-selected="true" title="home"
-                    class="icon-home">
+                </button><button role="tab" id="toggle-home" aria-selected="true"
+                    title="home" class="icon-home">
                     <p class="buttondesc">home</p>
-                </button><button aria-selected="false" title="draw"
-                    class="icon-draw">
+                </button><button role="tab" id="toggle-draw" aria-selected="false"
+                    title="draw" class="icon-draw">
                     <p class="buttondesc">draw</p>
                 </button>
             </div>
@@ -487,15 +492,6 @@ figcaption {
                 aria-hidden="true" class="heart4">
         </div>
     </main>
-
-    <script>
-        addEventListener('load', function () {
-            'use strict'
-            var b = document.getElementById('home')
-            // b.setAttribute('class', 'start')
-            b.style.opacity = 1
-        })
-    </script>
     <script src="https://addsoupbase.github.io/h.js"></script>
     <script type="module">
         import $, { h } from 'https://addsoupbase.github.io/yay.js'
@@ -555,6 +551,9 @@ color.on({
     var btns = [].slice.call(btn.children)
     function hide(e) {
         e.style.display = 'none'
+        setTimeout(function () {
+            e.style.opacity = +(this === e.getAttribute('id'))
+        }.bind(this))
     }
     function toggle(e) {
         e.setAttribute('aria-selected', '' + (this === e))
@@ -562,16 +561,37 @@ color.on({
     h.delegate(btn, {
         click: function () {
             if (this.getAttribute('aria-selected') === 'true') return
-            var t = this.title
-            tabs.forEach(hide)
+            var t = location.hash = this.title
+            tabs.forEach(hide, t)
             var current = d.getElementById(t)
             current.style.display = 'block'
-            current.style.opacity = 1
+            // current.style.opacity = 1
             btns.forEach(toggle, this)
         }
     })
 }(window[Symbol.for('[[HModule]]')], document.getElementById('buttons'), document)
 
+    </script>
+    <script>
+        !function (d) {
+            'use strict'
+            addEventListener('load', function () {
+                var d = document
+                var b = d.getElementById('holder')
+                // b.setAttribute('class', 'start')
+                b.style.opacity = 1
+                switch (hash) {
+                    case 'draw':
+                    case 'home':
+                    case 'friends':
+                        var t = d.getElementById('toggle-' + hash)
+                        t.click()
+                        d.getElementById(hash).style.opacity=1 
+                }
+            })
+            var hash = location.hash.substring(1)
+
+        }(document)
     </script>
 </body>
 
