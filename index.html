@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <script src="https://addsoupbase.github.io/css.js" blocking="render"></script>
     <script src="https://addsoupbase.github.io/css_bad.js" nomodule></script>
-    <link rel="preload" as="style" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <!-- <link rel="preload" as="style" href="./css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+    <link rel="preload" as="font" crossorigin="anonymous" href="./media/HollyBerryPop.otf">
     <meta http-equiv="content-language" content="en">
     <meta property="og:locale" content="en_US">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -81,23 +82,236 @@
     </script>
     <style>
         :root {
-            background: #FC748B;
-            background: -webkit-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
-            background: -moz-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
-            background: linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);
-            background-size: 100vw 100vh;
-        }
+    --pastel: #FAF8F6;
+    font-family: HollyBerryPop;
+    font-size: large;
+    --bgcolor: rgb(246, 208, 208);
+    --tap-highlight-color: rgba(245, 89, 89, 0.18);
 
-        @keyframes intro {
-            0% {
-                filter: grayscale(100%)
-            }
+}
 
-            100% {
-                filter: grayscale(0%)
-            }
-        }
+body,
+html {
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+}
+
+#bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: .7;
+    z-index: -1;
+    --rotation: 0deg;
+    animation: rotate 30s linear infinite;
+    background: #FC748B;
+
+}
+
+@keyframes intro {
+    0% {
+        filter: grayscale(100%)
+    }
+
+    100% {
+        filter: grayscale(0%)
+    }
+}
+
+[class^=icon][aria-selected=true] p {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-decoration-color: magenta;
+}
+
+[class^=icon] {
+    place-items: center;
+    image-rendering: pixelated;
+    background-image: url(./media/icons.png);
+    /* image-rendering: pixelated; */
+    width: 122px;
+    height: 122px;
+    transform: scale(0.4, 0.4);
+    cursor: pointer;
+    margin: -30px;
+    /* transition: transform s ease */
+    place-content: end;
+    background-color: rgb(0 0 0 / 0%);
+    border: none;
+}
+
+[class^=icon]:hover {
+    filter: brightness(90%)
+}
+
+.buttondesc {
+    position: absolute;
+    font-size: xx-large;
+    top: 95px;
+    pointer-events: none;
+    width: 100%;
+    font-family: monospace;
+}
+
+.buttondesc::first-letter {
+    text-transform: capitalize;
+}
+
+[class^=icon]:active {
+    transform: scale(0.37, 0.37)
+}
+
+.icon-home {
+    background-position: 0 calc(122px * -3);
+}
+
+.icon-settings {
+    background-position: calc(122px * -7) calc(122px * -13);
+    filter: hue-rotate(420deg) grayscale(100%) brightness(1.3)
+}
+.icon-settings:hover {
+    filter: grayscale(100%) brightness(1.2)
+}
+.icon-undo {
+    background-position: calc(122px * -3) 0;
+}
+
+.icon-submit {
+    background-position: calc(122px * -12) 0;
+    filter: hue-rotate(130deg) brightness(1.7);
+}
+
+.icon-submit:hover {
+    filter: hue-rotate(130deg) brightness(1.4)
+}
+
+.tab {
+    width:100%;
+    /* display: contents; */
+    height: 100%;
+    transition: opacity .3s ease
+}
+
+.icon-friends {
+    background-position: calc(122px * -4) calc(122px * -13);
+}
+
+.icon-draw {
+    background-position: calc(122px * -8) calc(122px * -13);
+}
+
+img[class^=heart] {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+}
+
+
+.heart1 {
+    top: -30px;
+    left: -30px;
+}
+
+.heart2 {
+    bottom: -30px;
+    right: -30px;
+}
+
+.heart3 {
+    top: -50px;
+    right: -50px;
+}
+
+.heart4 {
+    bottom: -50px;
+    left: -50px;
+}
+
+.cute {
+    border-radius: 13px;
+    padding: 5px;
+    margin: 2px;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+#holder {
+    /* -webkit-box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33);  */
+    /* box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33); */
+    /* border: 3px solid magenta; */
+    background-color: var(--bgcolor);
+    width: 90%;
+    position: absolute;
+    max-width: 80vw;
+    max-width: 600px;
+    height: 100%;
+    max-height: 73vh;
+    place-content: center;
+    padding: 0;
+    padding-top: 20px;
+    place-content: center;
+    text-align: center;
+    place-items: center;
+}
+
+.sect {
+    max-height: 98%;
+    padding: 14px;
+    /* width: 70vw; */
+    overflow: auto;
+    --scrollbar-color: var(--pastel);
+    --scrollbar-thumb-color: pink;
+    scrollbar-width: thin;
+}
+
+.tab {
+    display: none;
+}
+
+#buttons,
+#buttons * {
+    --user-select: none;
+}
+
+#buttons {
+    position: absolute;
+    bottom: -93px;
+    filter: hue-rotate(326deg);
+}
+
+.para {
+    max-width: 500px;
+}
+
+.avatar {
+    border-radius: 100%;
+    width: 70%;
+    max-width: 150px;
+}
+
+@property --rotation {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 225deg;
+}
+
+@keyframes rotate {
+    0% {
+        --rotation: 0deg;
+    }
+
+    100% {
+        --rotation: 360deg
+    }
+}
+
+@font-face {
+    font-family: HollyBerryPop;
+    src: url("./media/HollyBerryPop.otf"), url("./media/HollyBerryPop.ttf") format("ttf");
+    font-display: swap;
+}
     </style>
     <noscript>
         <style>
@@ -106,60 +320,134 @@
             }
         </style>
     </noscript>
+    <script type="module" src="https://addsoupbase.github.io/webcomponents/paper-canvas.js" async></script>
 </head>
 
 <body>
+    <div id="bg" style='background: -webkit-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
+    background: -moz-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
+    background: linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);
+    background-size: 100vw 100vh;'></div>
+    <main>
+        <div class="center cute" id="holder">
+            <div class="tab" id="home" style="display:block;opacity:0;transition: opacity .5s ease">
+                <section class="sect">
+                    <img src="https://addsoupbase.github.io/media/avatars/rikapika.webp" class="avatar">
+                    <p>rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika rika </p>
+                </section>
+            </div>
+
+            <div class="tab" id="friends">
+                <section class="sect">
+                    <p>hello</p>
+                </section>
+            </div>
+
+            <div class="tab" id="draw">
+                <section class="sect">
+                    <div style="overflow: hidden;">
+                        <paper-canvas id="canvas" width="250" height="250"
+                            style="display: inline-block;"></paper-canvas>
+                    </div>
+                    <input type="color" style="display:none" id="color">
+                    <div style="display: flex;place-content: center;"><button class="icon-settings" title="Color"
+                            id="colorBtn">
+                            <p class="buttondesc">Color</p>
+                        </button><button class="icon-undo" title="Undo" id="undo">
+                            <p class="buttondesc">Undo</p>
+                        </button><button class="icon-submit" title="Submit" id="submit">
+                            <p class="buttondesc">Submit</p>
+                        </button></div>
+                    <div style="display: grid;margin:10px;width: max-content;place-self: center;">
+                        <label for="brushsize" style="font-family: monospace;font-size: small">Brush Size</label>
+                        <input type="range" min="1" max="60" value="2" step=".5" id="brushsize"
+                            style="accent-color: #d800d8;">
+                    </div>
+                </section>
+            </div>
+            <div id="buttons">
+                <button aria-selected="false" title="friends"
+                    class="icon-friends">
+                    <p class="buttondesc">friends</p>
+                </button><button aria-selected="true" title="home"
+                    class="icon-home">
+                    <p class="buttondesc">home</p>
+                </button><button aria-selected="false" title="draw"
+                    class="icon-draw">
+                    <p class="buttondesc">draw</p>
+                </button>
+            </div>
+        </div>
+    </main>
     <script>
         addEventListener('load', function () {
             'use strict'
-            var b = document.querySelector('main')
+            var b = document.getElementById('home')
             // b.setAttribute('class', 'start')
             b.style.opacity = 1
         })
     </script>
-    <main style="opacity:0;transition: opacity .5s ease">
-        <div class="center cute" id="holder">
-            <div class="tab" id="home">
-                <div style="padding: 14px;overflow: auto;">
-                    <img src="https://addsoupbase.github.io/media/avatars/rikapika.webp" class="avatar" title="Rika" width="200" style="max-width: 100px;width:100%">
-                    <h1>Rika Pika</h1>
-                    <p>
-                        hihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihihi
-                    </p>
-                </div>
-            </div>
-            <div class="tab" id="friends">
-
-            </div>
-            <img width="100" height="100" aria-hidden="true" alt src="./media/heart.webp"
-                class="heart1"><img width="100" height="100" aria-hidden="true" alt src="./media/heart.webp"
-                class="heart2"><img width="100" height="100" aria-hidden="true" alt src="./media/heart.webp"
-                class="heart3"><img width="100" height="100" aria-hidden="true" alt src="./media/heart.webp"
-                class="heart4">
-            <div id="buttons" class="cute">
-                <div tabindex="0" role="button" title="home"
-                    class="icon-home"></div> 
-            </div>
-        </div>
-    </main>
     <script src="https://addsoupbase.github.io/h.js"></script>
+    <script type="module">
+        import $, { h } from 'https://addsoupbase.github.io/yay.js'
+        import 'https://addsoupbase.github.io/webcomponents/paper-canvas.js'
+        const { colorBtn, color, undo, submit, canvas, brushsize, } = $.id
+        let { ctx } = canvas
+        submit.on({
+            async _click() {
+                let data = canvas.dataURL()
+                console.log(await fetch(`http://0.0.0.0:3002?user=rika`, {
+                    method: "POST",
+                    body: data
+                }).then(o => o.text()))
+            }
+        })
+        brushsize.on({
+            change() {
+                canvas.attr.brushsize = +this.value
+            }
+        })
+        colorBtn.on({
+            click() {
+                color.click()
+            }
+        })
+        undo.on({
+            click() {
+                canvas.undo()
+            }
+        })
+        color.on({
+            change() {
+                canvas.color = this.value
+            }
+        })
+    </script>
     <script>
         !function (h, btn, d) {
-            'use strict'
-            var tabs = [].slice.call(d.getElementsByClassName('tab'))
-            function hide(e) {
-                e.style.visibility = 'hidden'
-            }
-            h.delegate(btn, {
-                click: function () {
-                    var t = this.title
-                    tabs.forEach(hide)
-                    var current = d.getElementById(t)
-                    current.style.visibility = 'visible'
-                    current.style.opacity = 1
-                }
-            })
-        }(window[Symbol.for('[[HModule]]')], document.getElementById('buttons'), document)
+    'use strict'
+    var tabs = [].slice.call(d.getElementsByClassName('tab'))
+    var btns = [].slice.call(btn.children)
+    function hide(e) {
+        e.style.display = 'none'
+    }
+    function toggle(e) {
+        e.setAttribute('aria-selected', '' + (this === e))
+    }
+    h.delegate(btn, {
+        click: function () {
+            if (this.getAttribute('aria-selected') === 'true') return
+            var t = this.title
+            tabs.forEach(hide)
+            var current = d.getElementById(t)
+            current.style.display = 'block'
+            current.style.opacity = 1
+            btns.forEach(toggle, this)
+        }
+    })
+}(window[Symbol.for('[[HModule]]')], document.getElementById('buttons'), document)
+
     </script>
 </body>
 
