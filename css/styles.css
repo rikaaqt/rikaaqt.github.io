@@ -1,0 +1,141 @@
+:root {
+    --pastel: #FAF8F6;
+    --rotation: 0deg;
+    font-family: HollyBerryPop;
+    animation: rotate 30s linear infinite;
+    font-size: large;
+    --bgcolor: rgb(249, 218, 218);
+    --tap-highlight-color: rgba(245, 89, 89, 0.18);
+}
+
+[class^=icon] {
+    background-image: url(../media/icons.png);
+    /* image-rendering: pixelated; */
+    width: 122px;
+    height: 122px;
+    transform: scale(0.4, 0.4);
+    filter: hue-rotate(307deg);
+    cursor: pointer;
+    margin: -30px;
+    /* transition: transform s ease */
+    place-content: end;
+}
+
+[class^=icon]::after {
+    content: attr(title);
+    position: relative;
+    width: 100%;
+    bottom:-15px;
+}
+
+[class^=icon]:active {
+    transform: scale(0.37, 0.37)
+}
+
+.icon-home {
+    background-position: 0 calc(122px * -3);
+
+}
+.tab{
+    display: contents;
+    transition: opacity .3s ease
+}
+
+.icon-friends {
+    background-position: calc(122px * -4) calc(122px * -13);
+}
+
+.icon-draw {
+    background-position: calc(122px * -8) calc(122px * -13);
+}
+
+img[class^=heart] {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+}
+
+
+.heart1 {
+    top: -30px;
+    left: -30px;
+}
+
+.heart2 {
+    bottom: -30px;
+    right: -30px;
+}
+
+.heart3 {
+    top: -50px;
+    right: -50px;
+}
+
+.heart4 {
+    bottom: -50px;
+    left: -50px;
+}
+
+.cute {
+    border-radius: 13px;
+    padding: 5px;
+    margin: 2px;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+#holder {
+    border: 1px solid var(--bgcolor);
+    background-color: var(--bgcolor);
+    width: 70%;
+    max-width: 80vw;
+    height: 90%;
+    max-height: 85vh;
+    display: grid;
+    place-content: center;
+    padding: 0;
+}
+
+#buttons {
+
+    border-radius: inherit;
+    border-top: 3px dotted magenta;
+    /* position: absolute; */
+    border-radius: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 80px;
+    place-self: center;
+    place-items: center;
+    display: flex;
+    max-width: 70vw;
+    place-content: center;
+}
+
+.avatar {
+    border-radius: 100%;
+}
+
+@property --rotation {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 225deg;
+}
+
+@keyframes rotate {
+    0% {
+        --rotation: 0deg;
+    }
+
+    100% {
+        --rotation: 360deg
+    }
+}
+
+@font-face {
+    font-family: HollyBerryPop;
+    src: url(../media/HollyBerryPop.otf);
+}
