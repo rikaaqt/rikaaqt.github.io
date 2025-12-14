@@ -397,9 +397,9 @@ img[class^=heart] {
         submit.on({
             async _click() {
                 let data = canvas.dataURL()
-                console.log(await fetch(`http://0.0.0.0:3002?user=rika`, {
+                console.log(await fetch(`https://drawing-submissions.deno.dev?user=rika`, {
                     method: "POST",
-                    body: data
+                    body: data 
                 }).then(o => o.text()))
             }
         })
