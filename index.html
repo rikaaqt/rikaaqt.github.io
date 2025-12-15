@@ -218,7 +218,7 @@ img[class^=heart] {
 
 .heart1 {
     rotate: -45deg;
-    transform:translateY(-30px)
+    transform: translateY(-30px)
 }
 
 .heart2 {
@@ -231,8 +231,7 @@ img[class^=heart] {
 
 .heart4 {
     rotate: -225deg;
-        transform:translateY(-30px)
-
+    transform: translateY(-30px)
 }
 
 .cute {
@@ -271,7 +270,11 @@ figcaption {
 
 @supports (-webkit-touch-callout: none) {
     #holder {
-        top: -30px
+        top: -60px;
+        max-height: 65vh;
+    }
+    #buttons {
+        bottom: auto !important
     }
 }
 
@@ -362,14 +365,16 @@ figcaption {
     --user-select: none;
 }
 
-#buttons {
+#buttons 
     display: block;
     place-content: center;
     width: 100%;
     place-items: center;
     place-self: center;
     position: absolute;
-    bottom: -93px;
+    bottom: auto;
+    filter: hue-rotate(326deg);
+    filter: hue-rotate(326deg);
     filter: hue-rotate(326deg);
 }
 
