@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="dns-prefetch" href="https://addsoupbase.github.io">
     <script src="https://addsoupbase.github.io/css.js" blocking="render"></script>
     <script src="https://addsoupbase.github.io/css_bad.js" nomodule></script>
     <!-- <link rel="preload" as="style" href="./css/styles.css"> -->
     <!-- <link rel="stylesheet" href="./css/styles.css"> -->
-    <link rel="preload" as="font" crossorigin="anonymous" href="./media/HollyBerryPop.otf">
+    <link rel="preload" as="font" crossorigin="anonymous" href="./media/HollyBerryPop.otf" type="font/otf">
+    <link rel="preload" as="font" crossorigin="anonymous" href="./media/Pixel.otf" type="font/otf">
+    <link rel="preload" as="image" href="./media/icons.png" type="image/png">
     <meta http-equiv="content-language" content="en">
     <meta property="og:locale" content="en_US">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -99,8 +102,8 @@ html {
 
 #bg {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     opacity: .7;
     z-index: -1;
     --rotation: 0deg;
@@ -145,13 +148,15 @@ html {
     filter: brightness(90%)
 }
 
+
+
 .buttondesc {
     position: absolute;
-    font-size: xx-large;
+    font-size: 3em;
     top: 95px;
+    width: max-content;
     pointer-events: none;
-    width: 100%;
-    font-family: monospace;
+    font-family: Pixel;
 }
 
 .buttondesc::first-letter {
@@ -181,7 +186,7 @@ html {
 
 .icon-submit {
     background-position: calc(122px * -12) 0;
-    filter: hue-rotate(130deg) brightness(1.7);
+    filter: hue-rotate(130deg) brightness(1.6);
 }
 
 .icon-submit:hover {
@@ -261,6 +266,7 @@ figcaption {
 
 .decor {
     position: absolute;
+    min-width: 60px;
 }
 
 #cat {
@@ -288,7 +294,7 @@ figcaption {
 
 #girl,
 #cat {
-    width: 25%;
+    width: 10%;
     height: auto;
     max-width: 130px;
 }
@@ -302,17 +308,18 @@ figcaption {
 
 
 #holder {
+    margin: auto;
     background-image: url(https://addsoupbase.github.io/cute-emojis/emojis/1024335987842752552.gif);
     background-repeat: no-repeat;
     background-size: 10%;
     background-position: 10% 100%;
     /* -webkit-box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33);  */
     /* box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33); */
-    /* border: 3px solid magenta; */
-    background-color: var(--bgcolor);
+border: 3px dashed magenta;    background-color: var(--bgcolor);
     width: 90%;
     position: absolute;
     max-width: 80vw;
+    max-width: 800px;
     /* max-width: 600px; */
     height: 100%;
     max-height: 73vh;
@@ -386,6 +393,12 @@ figcaption {
     src: url("./media/HollyBerryPop.otf"), url("./media/HollyBerryPop.ttf") format("ttf");
     font-display: swap;
 }
+
+@font-face {
+    font-family: Pixel;
+    src: url("./media/Pixel.otf"), url("./media/Pixel.ttf") format("ttf");
+    font-display: swap;
+}
     </style>
     <noscript>
         <style>
@@ -406,7 +419,7 @@ figcaption {
     background: -moz-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
     background: linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);
-    background-size: 100vw 100vh;'></div>
+    background-size: 100% 100%;'></div>
     <main>
         <div class="center cute" id="holder" style="opacity:0;transition: opacity .5s ease">
             <div class="tab" id="home" style="display:block;">
@@ -457,16 +470,16 @@ figcaption {
     place-content: space-evenly;
     width: 50%;
     place-items: center;
-    place-self: center;max-width:300px;min-width:200px"><button class="icon-settings" title="Color" id="colorBtn">
+    place-self: center;max-width:300px;min-width:200px;margin:auto"><button class="icon-settings" title="Color" id="colorBtn">
                                 <p class="buttondesc">Color</p>
                             </button><button class="icon-undo" title="Undo" id="undo">
                                 <p class="buttondesc">Undo</p>
                             </button><button class="icon-submit" title="Submit" id="submit">
                                 <p class="buttondesc">Submit</p>
                             </button></div>
-                        <div style="display: inline-grid;margin:10px;width: max-content;place-self: center;"
+                        <div style="display: inline-grid;margin:28px;width: max-content;place-self: center;"
                             class="centerx">
-                            <label for="brushsize" style="font-family: monospace;font-size: small">Brush Size</label>
+                            <label for="brushsize" style="font-family: pixel;">Brush Size</label>
                             <input type="range" min="1" max="60" value="2" step=".5" id="brushsize"
                                 style="accent-color: #d800d8;">
                         </div>
