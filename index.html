@@ -210,7 +210,6 @@ html {
 }
 
 img[class^=heart] {
-    position: absolute;
     width: 50px;
     height: 50px;
     z-index: 1;
@@ -218,23 +217,22 @@ img[class^=heart] {
 }
 
 .heart1 {
-    top: -30px;
-    left: -30px
+    rotate: -45deg;
+    transform:translateY(-30px)
 }
 
 .heart2 {
-    bottom: -30px;
-    right: -30px
+    rotate: 45deg;
 }
 
 .heart3 {
-    bottom: -40px;
-    left: -40px
+    rotate: 225deg;
 }
 
 .heart4 {
-    top: -40px;
-    right: -40px
+    rotate: -225deg;
+        transform:translateY(-30px)
+
 }
 
 .cute {
@@ -251,6 +249,19 @@ figure {
 
 figcaption {
     display: inline;
+}
+
+.anchor {
+    position: fixed;
+    position-anchor: --anchor;
+    --size: 25px;
+    --user-select: none;
+}
+
+@supports (not (anchor-name: --corners)) or (-webkit-touch-callout: none) {
+    .anchor {
+        display: none !important;
+    }
 }
 
 .friend {
@@ -315,7 +326,8 @@ figcaption {
     background-position: 10% 100%;
     /* -webkit-box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33);  */
     /* box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33); */
-border: 3px dashed magenta;    background-color: var(--bgcolor);
+    border: 3px dashed magenta;
+    background-color: var(--bgcolor);
     width: 90%;
     position: absolute;
     max-width: 80vw;
@@ -406,7 +418,8 @@ border: 3px dashed magenta;    background-color: var(--bgcolor);
                 display: block !important;
             }
 
-            #holder, .tab {
+            #holder,
+            .tab {
                 opacity: 1 !important
             }
         </style>
@@ -421,7 +434,7 @@ border: 3px dashed magenta;    background-color: var(--bgcolor);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);
     background-size: 100% 100%;'></div>
     <main>
-        <div class="center cute" id="holder" style="opacity:0;transition: opacity .5s ease">
+        <div class="center cute" id="holder" style="anchor-name: --anchor;opacity:0;transition: opacity .5s ease">
             <div class="tab" id="home" style="display:block;">
                 <section class="sect">
                     <img src="https://addsoupbase.github.io/media/avatars/rikapika.webp" class="avatar" style="z-index: 2;">
@@ -470,7 +483,8 @@ border: 3px dashed magenta;    background-color: var(--bgcolor);
     place-content: space-evenly;
     width: 50%;
     place-items: center;
-    place-self: center;max-width:300px;min-width:200px;margin:auto"><button class="icon-settings" title="Color" id="colorBtn">
+    place-self: center;max-width:300px;min-width:200px;margin:auto"><button class="icon-settings" title="Color"
+                                id="colorBtn">
                                 <p class="buttondesc">Color</p>
                             </button><button class="icon-undo" title="Undo" id="undo">
                                 <p class="buttondesc">Undo</p>
@@ -487,22 +501,22 @@ border: 3px dashed magenta;    background-color: var(--bgcolor);
                 </section>
             </div>
             <div id="buttons" role="tablist">
-                <button role="tab" id="toggle-friends" aria-selected="false"
-                    title="friends" class="icon-friends">
+                <button role="tab" id="toggle-friends"
+                    aria-selected="false" title="friends" class="icon-friends">
                     <p class="buttondesc">friends</p>
-                </button><button role="tab" id="toggle-home" aria-selected="true"
-                    title="home" class="icon-home">
+                </button><button role="tab" id="toggle-home"
+                    aria-selected="true" title="home" class="icon-home">
                     <p class="buttondesc">home</p>
-                </button><button role="tab" id="toggle-draw" aria-selected="false"
-                    title="draw" class="icon-draw">
+                </button><button role="tab" id="toggle-draw"
+                    aria-selected="false" title="draw" class="icon-draw">
                     <p class="buttondesc">draw</p>
                 </button>
             </div>
-            <img draggable="false" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart1"><img draggable="false" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart2"><img draggable="false" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart3"><img draggable="false" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart4">
+            <img draggable="false" style="left: calc(anchor(left) - var(--size));top: calc(anchor(top) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart1 anchor"><img draggable="false" style="left: calc(anchor(right) - var(--size));top: calc(anchor(top) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart2 anchor"><img draggable="false" style="left: calc(anchor(left) - var(--size));top: calc(anchor(bottom) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart3 anchor"><img draggable="false" style="left: calc(anchor(right) - var(--size));top: calc(anchor(bottom) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart4 anchor">
         </div>
     </main>
     <script src="https://addsoupbase.github.io/h.js"></script>
@@ -600,7 +614,7 @@ color.on({
                     case 'friends':
                         var t = d.getElementById('toggle-' + hash)
                         t.click()
-                        d.getElementById(hash).style.opacity=1 
+                        d.getElementById(hash).style.opacity = 1
                 }
             })
             var hash = location.hash.substring(1)
