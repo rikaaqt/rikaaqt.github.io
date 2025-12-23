@@ -84,336 +84,7 @@
         }
     </script>
     <style>
-        :root {
-    --pastel: #FAF8F6;
-    font-family: HollyBerryPop;
-    font-size: large;
-    --bgcolor: rgb(246, 208, 208);
-    --tap-highlight-color: rgba(245, 89, 89, 0.18);
-
-}
-
-body,
-html {
-    margin: 0;
-    padding: 0;
-    scrollbar-width: none;
-}
-
-#bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    opacity: .7;
-    z-index: -1;
-    --rotation: 0deg;
-    animation: rotate 30s linear infinite;
-    background: #FC748B;
-
-}
-
-@keyframes intro {
-    0% {
-        filter: grayscale(100%)
-    }
-
-    100% {
-        filter: grayscale(0%)
-    }
-}
-
-[class^=icon][aria-selected=true] p {
-    text-decoration: underline;
-    text-decoration-thickness: 4px;
-    text-decoration-color: magenta;
-}
-
-[class^=icon] {
-    place-items: center;
-    image-rendering: pixelated;
-    background-image: url(./media/icons.png);
-    /* image-rendering: pixelated; */
-    width: 122px;
-    height: 122px;
-    transform: scale(0.4, 0.4);
-    cursor: pointer;
-    margin: -30px;
-    /* transition: transform s ease */
-    place-content: end;
-    background-color: rgb(0 0 0 / 0%);
-    border: none;
-}
-
-[class^=icon]:hover {
-    filter: brightness(90%)
-}
-
-
-
-.buttondesc {
-    position: absolute;
-    font-size: 3em;
-    top: 95px;
-    width: max-content;
-    pointer-events: none;
-    font-family: Pixel;
-}
-
-.buttondesc::first-letter {
-    text-transform: capitalize;
-}
-
-[class^=icon]:active {
-    transform: scale(0.37, 0.37)
-}
-
-.icon-home {
-    background-position: 0 calc(122px * -3);
-}
-
-.icon-settings {
-    background-position: calc(122px * -7) calc(122px * -13);
-    filter: hue-rotate(420deg) grayscale(100%) brightness(1.3)
-}
-
-.icon-settings:hover {
-    filter: grayscale(100%) brightness(1.2)
-}
-
-.icon-undo {
-    background-position: calc(122px * -3) 0;
-}
-
-.icon-submit {
-    background-position: calc(122px * -12) 0;
-    filter: hue-rotate(130deg) brightness(1.6);
-}
-
-.icon-submit:hover {
-    filter: hue-rotate(130deg) brightness(1.4)
-}
-
-.tab {
-    width: 100%;
-    /* display: contents; */
-    height: 100%;
-    opacity: 0;
-    transition: opacity .2s ease-out
-}
-
-.icon-friends {
-    background-position: calc(122px * -4) calc(122px * -13);
-}
-
-.icon-draw {
-    background-position: calc(122px * -8) calc(122px * -13);
-}
-
-img[class^=heart] {
-    width: 50px;
-    height: 50px;
-    z-index: 1;
-    --user-select: none
-}
-
-.heart1 {
-    rotate: -45deg;
-    transform: translateY(-30px)
-}
-
-.heart2 {
-    rotate: 45deg;
-}
-
-.heart3 {
-    rotate: 225deg;
-}
-
-.heart4 {
-    rotate: -225deg;
-    transform: translateY(-30px)
-}
-
-.cute {
-    border-radius: 13px;
-    padding: 5px;
-    margin: 2px;
-    word-wrap: break-word;
-    word-break: break-word;
-}
-
-figure {
-    display: inline-block;
-}
-
-figcaption {
-    display: inline;
-}
-
-.anchor {
-    position: fixed;
-    position-anchor: --anchor;
-    --size: 25px;
-    --user-select: none;
-}
-
-@supports (not (anchor-name: --corners)) or (-webkit-touch-callout: none) {
-    .anchor {
-        display: none !important;
-    }
-}
-
-.friend {
-    --user-select: none;
-    width: auto !important
-}
-
-@supports (-webkit-touch-callout: none) {
-    #holder {
-        top: -60px;
-        max-height: 65vh;
-    }
-    #buttons {
-        bottom: auto !important
-    }
-}
-
-.decor {
-    position: absolute;
-    min-width: 60px;
-}
-
-#cat {
-    top: 10%;
-    left: 3%;
-    transform: rotate(-30deg)
-}
-
-@supports not (clip-path: shape(from 50% 91%,
-        line to 90% 50%,
-        arc to 50% 9% of 1%,
-        arc to 10% 50% of 1%)) {
-    .heartshaped {
-        border-radius: 100%;
-    }
-}
-
-.heartshaped {
-    clip-path:
-        shape(from 50% 91%,
-            line to 90% 50%,
-            arc to 50% 9% of 1%,
-            arc to 10% 50% of 1%);
-}
-
-#girl,
-#cat {
-    width: 10%;
-    height: auto;
-    max-width: 130px;
-}
-
-#girl {
-    top: 10%;
-    right: 3%;
-    transform: rotate(30deg)
-}
-
-
-
-#holder {
-    margin: auto;
-    background-image: url(https://addsoupbase.github.io/cute-emojis/emojis/1024335987842752552.gif);
-    background-repeat: no-repeat;
-    background-size: 10%;
-    background-position: 10% 100%;
-    /* -webkit-box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33);  */
-    /* box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33); */
-    border: 3px dashed magenta;
-    background-color: var(--bgcolor);
-    width: 90%;
-    position: absolute;
-    max-width: 80vw;
-    max-width: 800px;
-    /* max-width: 600px; */
-    height: 100%;
-    max-height: 73vh;
-    place-content: center;
-    padding: 0;
-    padding-top: 20px;
-    place-content: center;
-    text-align: center;
-    place-items: center;
-}
-
-.sect {
-    max-height: 98%;
-    padding: 14px;
-    /* width: 70vw; */
-    overflow: auto;
-    --scrollbar-color: var(--pastel);
-    --scrollbar-thumb-color: pink;
-    scrollbar-width: thin;
-}
-
-.tab {
-    display: none;
-}
-
-#buttons,
-#buttons * {
-    --user-select: none;
-}
-
-#buttons {
-    display: block;
-    place-content: center;
-    width: 100%;
-    place-items: center;
-    place-self: center;
-    position: absolute;
-    bottom: -93px;
-    filter: hue-rotate(326deg);
-}
-
-.para {
-    max-width: 500px;
-}
-
-.avatar {
-    border-radius: 100%;
-    width: 70%;
-    max-width: 150px;
-    position: relative;
-}
-
-@property --rotation {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 225deg;
-}
-
-@keyframes rotate {
-    0% {
-        --rotation: 0deg;
-    }
-
-    100% {
-        --rotation: 360deg
-    }
-}
-
-@font-face {
-    font-family: HollyBerryPop;
-    src: url("./media/HollyBerryPop.otf"), url("./media/HollyBerryPop.ttf") format("ttf");
-    font-display: swap;
-}
-
-@font-face {
-    font-family: Pixel;
-    src: url("./media/Pixel.otf"), url("./media/Pixel.ttf") format("ttf");
-    font-display: swap;
-}
+        :root {--pastel: #FAF8F6;font-family: HollyBerryPop;font-size: large;--bgcolor: rgb(246, 208, 208);--tap-highlight-color: rgba(245, 89, 89, 0.18);}body,html {margin: 0;padding: 0;scrollbar-width: none;}#bg {position: fixed;width: 100%;height: 100%;opacity: .7;z-index: -1;--rotation: 0deg;animation: rotate 30s linear infinite;background: #FC748B;}@keyframes intro {0% {filter: grayscale(100%)}100% {filter: grayscale(0%)}}[class^=icon][aria-selected=true] p {text-decoration: underline;text-decoration-thickness: 4px;text-decoration-color: magenta;}[class^=icon] {place-items: center;image-rendering: pixelated;background-image: url(./media/icons.png);/* image-rendering: pixelated; */width: 122px;height: 122px;transform: scale(0.4, 0.4);cursor: pointer;margin: -30px;/* transition: transform s ease */place-content: end;background-color: rgb(0 0 0 / 0%);border: none;}[class^=icon]:hover {filter: brightness(90%)}.buttondesc {position: absolute;font-size: 3em;top: 95px;width: max-content;pointer-events: none;font-family: Pixel;}.buttondesc::first-letter {text-transform: capitalize;}[class^=icon]:active {transform: scale(0.37, 0.37)}.icon-home {background-position: 0 calc(122px * -3);}.icon-settings {background-position: calc(122px * -7) calc(122px * -13);filter: hue-rotate(420deg) grayscale(100%) brightness(1.3)}.icon-settings:hover {filter: grayscale(100%) brightness(1.2)}.icon-undo {background-position: calc(122px * -3) 0;}.icon-submit {background-position: calc(122px * -12) 0;filter: hue-rotate(130deg) brightness(1.6);}.icon-submit:hover {filter: hue-rotate(130deg) brightness(1.4)}.tab {width: 100%;/* display: contents; */height: 100%;opacity: 0;transition: opacity .2s ease-out}.icon-friends {background-position: calc(122px * -4) calc(122px * -13);}.icon-draw {background-position: calc(122px * -8) calc(122px * -13);}img[class^=heart] {width: 50px;height: 50px;z-index: 1;--user-select: none}.heart1 {rotate: -45deg;transform: translateY(-30px)}.heart2 {rotate: 45deg;}.heart3 {rotate: 225deg;}.heart4 {rotate: -225deg;transform: translateY(-30px)}.cute {border-radius: 13px;padding: 5px;margin: 2px;word-wrap: break-word;word-break: break-word;}figure {display: inline-block;}figcaption {display: inline;}.anchor {position: fixed;position-anchor: --anchor;--size: 25px;--user-select: none;}@supports (not (anchor-name: --corners)) or (-webkit-touch-callout: none) {.anchor {display: none !important;}}.friend {--user-select: none;width: auto !important}@supports (-webkit-touch-callout: none) {#holder {top: -60px;max-height: 65vh;}#buttons {bottom: auto !important}}.decor {position: absolute;min-width: 60px;}#cat {top: 10%;left: 3%;transform: rotate(-30deg)}@supports not (clip-path: shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%)) {.heartshaped {border-radius: 100%;}}.heartshaped {clip-path:shape(from 50% 91%,line to 90% 50%,arc to 50% 9% of 1%,arc to 10% 50% of 1%);}#girl,#cat {width: 10%;height: auto;max-width: 130px;}#girl {top: 10%;right: 3%;transform: rotate(30deg)}#holder {margin: auto;background-image: url(https://addsoupbase.github.io/cute-emojis/emojis/1024335987842752552.gif);background-repeat: no-repeat;background-size: 10%;background-position: 10% 100%;/* -webkit-box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33);*//* box-shadow: 0px 12px 29px 0px rgba(69,211,43,0.33); */border: 3px dashed magenta;background-color: var(--bgcolor);width: 90%;position: absolute;max-width: 80vw;max-width: 800px;/* max-width: 600px; */height: 100%;max-height: 73vh;place-content: center;padding: 0;padding-top: 20px;place-content: center;text-align: center;place-items: center;}.sect {max-height: 98%;padding: 14px;/* width: 70vw; */overflow: auto;--scrollbar-color: var(--pastel);--scrollbar-thumb-color: pink;scrollbar-width: thin;}.tab {display: none;}#buttons,#buttons * {--user-select: none;}#buttons {display: block;place-content: center;width: 100%;place-items: center;place-self: center;position: absolute;bottom: -93px;filter: hue-rotate(326deg);}.para {max-width: 500px;}.avatar {border-radius: 100%;width: 70%;max-width: 150px;position: relative;}@property --rotation {syntax: "<angle>";inherits: false;initial-value: 225deg;}@keyframes rotate {0% {--rotation: 0deg;}100% {--rotation: 360deg}}@font-face {font-family: HollyBerryPop;src: url("./media/HollyBerryPop.otf"), url("./media/HollyBerryPop.ttf") format("ttf");font-display: swap;}@font-face {font-family: Pixel;src: url("./media/Pixel.otf"), url("./media/Pixel.ttf") format("ttf");font-display: swap;}
     </style>
     <noscript>
         <style>
@@ -431,11 +102,9 @@ figcaption {
 </head>
 
 <body>
-    <div id="bg" style='background: -webkit-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
-    background: -moz-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
-    background: linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);
-    background-size: 100% 100%;'></div>
+    <div id="bg"
+        style='background: -webkit-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);background: -moz-linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);background: linear-gradient(var(--rotation), rgba(252, 116, 139, 1) 0%, rgba(250, 248, 246, 1) 50%, rgba(252, 116, 139, 1) 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FC748B", endColorstr="#FC748B", GradientType=0);background-size: 100% 100%;'>
+    </div>
     <main>
         <div class="center cute" id="holder" style="anchor-name: --anchor;opacity:0;transition: opacity .5s ease">
             <div class="tab" id="home" style="display:block;">
@@ -473,27 +142,24 @@ figcaption {
                     </div>
                 </section>
             </div>
-
             <div class="tab" id="draw">
                 <section class="sect">
                     <div id="controls">
-                        <div style="overflow: hidden;">
+                        <div style="overflow: hidden;display: flex;place-self: center;place-content:center">
                             <paper-canvas id="canvas" width="250" height="250"
-                                style="display: inline-block;"></paper-canvas>
+                                ></paper-canvas>
                         </div>
                         <input type="color" style="display:none" id="color">
-                        <div style="display: flex;place-content: center;    display: flex;
-    place-content: space-evenly;
-    width: 50%;
-    place-items: center;
-    place-self: center;max-width:300px;min-width:200px;margin:auto"><button class="icon-settings" title="Color"
-                                id="colorBtn">
+                        <div
+                            style="display: flex;place-content: center;display: flex;place-content: space-evenly;width: 50%;place-items: center;place-self: center;max-width:300px;min-width:200px;margin:auto">
+                            <button class="icon-settings" title="Color" id="colorBtn">
                                 <p class="buttondesc">Color</p>
                             </button><button class="icon-undo" title="Undo" id="undo">
                                 <p class="buttondesc">Undo</p>
                             </button><button class="icon-submit" title="Submit" id="submit">
                                 <p class="buttondesc">Submit</p>
-                            </button></div>
+                            </button>
+                        </div>
                         <div style="display: inline-grid;margin:28px;width: max-content;place-self: center;"
                             class="centerx">
                             <label for="brushsize" style="font-family: pixel;">Brush Size</label>
@@ -516,15 +182,14 @@ figcaption {
                 </button>
             </div>
             <img draggable="false" style="left: calc(anchor(left) - var(--size));top: calc(anchor(top) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart1 anchor"><img draggable="false" style="left: calc(anchor(right) - var(--size));top: calc(anchor(top) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart2 anchor"><img draggable="false" style="left: calc(anchor(left) - var(--size));top: calc(anchor(bottom) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart3 anchor"><img draggable="false" style="left: calc(anchor(right) - var(--size));top: calc(anchor(bottom) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
-                aria-hidden="true" class="heart4 anchor">
+                aria-hidden="true" class="heart0 anchor"><img draggable="false" style="left: calc(anchor(right) - var(--size));top: calc(anchor(top) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart1 anchor"><img draggable="false" style="left: calc(anchor(left) - var(--size));top: calc(anchor(bottom) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart2 anchor"><img draggable="false" style="left: calc(anchor(right) - var(--size));top: calc(anchor(bottom) - var(--size))" src="./media/heart.webp" width="30" height="30" alt
+                aria-hidden="true" class="heart3 anchor">
         </div>
     </main>
     <script src="https://addsoupbase.github.io/h.js"></script>
-    <script type="module">
-        import $, { h } from 'https://addsoupbase.github.io/yay.js'
+    <script type="module">import $, { h } from 'https://addsoupbase.github.io/yay.js'
 import 'https://addsoupbase.github.io/webcomponents/paper-canvas.js'
 const { colorBtn, color, undo, submit, canvas, brushsize, controls } = $.id
 let { ctx } = canvas
@@ -572,57 +237,54 @@ color.on({
     change() {
         canvas.color = this.value
     }
-})
-    </script>
-    <script>
-        !function (h, btn, d) {
-    'use strict'
-    var tabs = [].slice.call(d.getElementsByClassName('tab'))
-    var btns = [].slice.call(btn.children)
-    function hide(e) {
-        e.style.display = 'none'
-        setTimeout(function () {
-            e.style.opacity = +(this === e.getAttribute('id'))
-        }.bind(this))
-    }
-    function toggle(e) {
-        e.setAttribute('aria-selected', '' + (this === e))
-    }
-    h.delegate(btn, {
-        click: function () {
-            if (this.getAttribute('aria-selected') === 'true') return
-            var t = location.hash = this.title
-            tabs.forEach(hide, t)
-            var current = d.getElementById(t)
-            current.style.display = 'block'
-            // current.style.opacity = 1
-            btns.forEach(toggle, this)
-        }
-    })
-}(window[Symbol.for('[[HModule]]')], document.getElementById('buttons'), document)
-
-    </script>
+})</script>
     <script>
         !function (d) {
             'use strict'
-            addEventListener('load', function () {
-                var d = document
-                var b = d.getElementById('holder')
-                // b.setAttribute('class', 'start')
-                b.style.opacity = 1
-                switch (hash) {
-                    default: hash = 'home'
-                    case 'draw':
-                    case 'home':
-                    case 'friends':
-                        var t = d.getElementById('toggle-' + hash)
-                        t.click()
-                        d.getElementById(hash).style.opacity = 1
+            var d = document
+var btn = document.getElementById('buttons')
+var h = window[Symbol.for('[[HModule]]')]
+var tabs = [].slice.call(d.getElementsByClassName('tab'))
+var btns = [].slice.call(btn.children)
+function hide(e) {
+    e.style.display = 'none'
+    setTimeout(function () {
+        e.style.opacity = +(this === e.getAttribute('id'))
+    }.bind(this))
+}
+function toggle(e) {
+    e.setAttribute('aria-selected', '' + (this === e))
+}
+h.delegate(btn, {
+    click: function () {
+        if (this.getAttribute('aria-selected') === 'true') return
+        var t = location.hash = this.title
+        tabs.forEach(hide, t)
+        var current = d.getElementById(t)
+        current.style.display = 'block'
+        // current.style.opacity = 1
+        btns.forEach(toggle, this)
+    }
+})
+            h.on(window, {
+                load: function () {
+                    var d = document
+                    var b = d.getElementById('holder')
+                    // b.setAttribute('class', 'start')
+                    b.style.opacity = 1
+                    switch (hash) {
+                        default: hash = 'home'
+                        case 'draw':
+                        case 'home':
+                        case 'friends':
+                            var t = d.getElementById('toggle-' + hash)
+                            t.click()
+                            d.getElementById(hash).style.opacity = 1
+                    }
                 }
             })
             var hash = location.hash.substring(1)
-
-        }(document)
+        }()
     </script>
 </body>
 
