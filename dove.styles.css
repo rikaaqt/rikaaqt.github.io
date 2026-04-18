@@ -326,7 +326,9 @@ marquee {
         font-size: 1.5em;
     }
 }
-
+#heading {
+    white-space: nowrap;
+}
 #socials {
     height: 100%;
     margin: auto;
@@ -336,7 +338,6 @@ marquee {
     #about {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
-
     }
 
     #socials {
