@@ -148,7 +148,7 @@ p,
 }
 
 main {
-        scroll-behavior: smooth;
+    scroll-behavior: smooth;
 
     padding-inline: 2px;
     /* border: 1px solid black; */
@@ -299,7 +299,7 @@ marquee {
 
 .textbox {
     border: 2px solid var(--_PINK);
-    margin: 5px;
+    margin-bottom: 5px;
     margin-inline: auto;
     width: 85%;
     justify-self: center;
@@ -323,11 +323,30 @@ marquee {
     max-width: 130px;
 }
 
+audio {
+    width: 90%;
+}
+
+audio::-webkit-time-remaining-display,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-mute-button,audio::-webkit-media-controls-volume-control-container {
+    display: none;
+}
+
+audio::-webkit-media-controls-panel {
+    justify-content: space-between;
+    align-content: space-between;
+    place-content: space-between;
+    background-color: var(--_SAKURA_PINK);
+}
+
 #bunnyholder {
     justify-self: end;
     align-self: start;
-    width: min-content
+    width: var(--stretch)
 }
+
 button {
     border-color: var(--_DARKER_PINK);
     border-style: solid;
@@ -337,6 +356,7 @@ button {
     width: min-content;
     place-self: center;
 }
+
 @media screen and (width <=368px) {
     #heading {
         font-size: 1.5em;
@@ -355,7 +375,7 @@ input[type="text"] {
     max-width: 300px;
     display: grid;
     gap: 5px;
-    place-content:center;
+    place-content: center;
     place-self: center;
     margin-bottom: 10px;
 }
@@ -375,18 +395,31 @@ input[type="text"] {
         grid-template-rows: auto auto;
     }
 
+    audio {
+        width: 100%;
+        margin-top: 5px;
+        margin-inline:5px
+    }
+
     #socials {
         align-self: center;
         height: 125%;
         place-content: end;
     }
 
+    #bunny {
+        margin: auto;
+    }
+
     #bunnyholder {
+        width: 50%;
         place-self: normal;
         grid-column: 1 / -1;
     }
 }
-
+#bunny {
+        margin-inline: auto;
+    }
 @font-face {
     font-family: 'Mikado Regular';
     font-style: normal;
