@@ -2,6 +2,8 @@
     --_SAKURA_PINK: #f9c6d4;
     --_CLOUD_WHITE: #faf9f6;
     --_LIGHT_PINK: #FFE5ee;
+        --_MID_PINK: #efd7df;
+
     --_DARK_PINK: #FFD7EC;
     --_PINK: #f597c1;
     --_DARKER_PINK: #f174ac;
@@ -149,13 +151,13 @@ p,
 
 main {
     scroll-behavior: smooth;
-
-    padding-inline: 2px;
+    padding-top: 6px;
     /* border: 1px solid black; */
-    height: 99vh;
+    height: 100%;
+    /* padding-bottom:8vh; */
     /* margin-block:10px; */
     transform: translateX(-50%);
-    top: 1%;
+    /* top: 1%; */
     position: fixed;
     left: 50%;
     width: 90vw;
@@ -299,6 +301,7 @@ marquee {
 
 .textbox {
     border: 2px solid var(--_PINK);
+    background-color: var(--_DARK_PINK);
     margin-bottom: 5px;
     margin-inline: auto;
     width: 85%;
@@ -325,12 +328,14 @@ marquee {
 
 audio {
     width: 90%;
+    place-self: center;
 }
 
 audio::-webkit-time-remaining-display,
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-mute-button,audio::-webkit-media-controls-volume-control-container {
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-volume-control-container {
     display: none;
 }
 
@@ -369,7 +374,12 @@ input[type="text"] {
     display: block;
     border-color: var(--_PINK)
 }
-
+p {
+    margin-block: 3px
+}
+:heading {
+    margin-block: 10px
+}
 #sendmessage {
     width: 50%;
     max-width: 300px;
@@ -396,9 +406,14 @@ input[type="text"] {
     }
 
     audio {
-        width: 100%;
         margin-top: 5px;
-        margin-inline:5px
+        margin-inline: 5px
+    }
+
+    @supports (-apple-pay-button-type: plain) {
+        audio {
+            width: auto;
+        }
     }
 
     #socials {
@@ -417,9 +432,11 @@ input[type="text"] {
         grid-column: 1 / -1;
     }
 }
+
 #bunny {
-        margin-inline: auto;
-    }
+    margin-inline: auto;
+}
+
 @font-face {
     font-family: 'Mikado Regular';
     font-style: normal;
