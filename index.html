@@ -198,9 +198,10 @@
             n.href = 'https://www.dropbox.com'
             document.head.appendChild(n)
         }, { once: true })
-        if (navigator.canShare && navigator.canShare()) document.getElementById('wifibutton')
+        var share = { text:'Check out my page!', url: location.href, title: "Rika Pika!" }
+        if (navigator.canShare && navigator.canShare(share)) document.getElementById('wifibutton')
             .onclick = function () {
-                navigator.share({ text:'Check out my page!', url: location.href, title: "Rika Pika!" })
+                navigator.share(share)
             }
     }()
 </script>
