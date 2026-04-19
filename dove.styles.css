@@ -20,6 +20,7 @@
 
 #princess {
     width: 65%;
+    text-align: left;
     text-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1)
 }
 
@@ -204,6 +205,14 @@ picture {
     /* justify-content: space-between; */
 }
 
+#abt {
+    /* background-repeat: no-repeat;
+  background: radial-gradient(circle closest-side at 70% 50%,
+        var(--_DARK_PINK) 0%,
+        var(--_DARK_PINK) 40%,
+        var(--_LIGHT_PINK) 40%,
+        var(--_LIGHT_PINK) 100%) 0 0 / 600px 600px */
+}
 #controls input {
     vertical-align: text-top;
 
@@ -304,12 +313,12 @@ p,
 li,
 small,
 i,
-/* strong, */
+marquee,
 :heading {
-    text-shadow: -2px 2px 5px rgba(245, 151, 193, 0.518);
-    -webkit-text-stroke-color: var(--_DARKER_PINK);
+    text-shadow: -4px 4px 5px rgba(245, 151, 193, 0.3);
+    -webkit-text-stroke-color: rgba(247, 115, 175, 0.358);
     -webkit-text-stroke-width: .1px;
-    color: var(--_PINK);
+    color: rgb(184, 76, 125);  
 }
 
 #heading span:nth-child(2) {
