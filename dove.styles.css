@@ -186,7 +186,7 @@ main {
     display: grid;
     overflow: auto;
     border: 3px solid var(--_PINK);
-    background-color: var(--_LIGHT_PINK);
+    background-color: #ffe0eb;
     width: 100%;
     margin-bottom: 8px;
     border-radius: 2px;
@@ -313,12 +313,14 @@ p,
 li,
 small,
 i,
+cite,
 marquee,
 :heading {
-    text-shadow: -4px 4px 5px rgba(245, 151, 193, 0.3);
-    -webkit-text-stroke-color: rgba(247, 115, 175, 0.358);
+
+    text-shadow: -4px 4px 5px rgba(243, 130, 181, 0.3);
+    -webkit-text-stroke-color: rgba(246, 96, 163, 0.358);
     -webkit-text-stroke-width: .1px;
-    color: rgb(184, 76, 125);  
+    color: rgb(164, 65, 110);  
 }
 
 #heading span:nth-child(2) {
@@ -359,7 +361,8 @@ marquee {
 
 .textbox {
     border: 2px solid var(--_PINK);
-    background-color: var(--_DARK_PINK);
+    /* background-color: var(--_DARK_PINK); */
+    filter:brightness(80%);
     margin-bottom: 5px;
     margin-inline: auto;
     width: 85%;
