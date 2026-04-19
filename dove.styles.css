@@ -187,7 +187,7 @@ main {
 .box {
     display: grid;
     text-align: -moz-center;
-    text-align:-webkit-center;
+    text-align: -webkit-center;
     overflow: auto;
     border: 3px solid var(--_PINK);
     background-color: #ffe0eb;
@@ -200,10 +200,12 @@ picture {
     /* display: inline; */
     /* display:contents; */
 }
+
 .box:nth-of-type(2) {
-        text-align: unset;
+    text-align: unset;
 
 }
+
 .box:first-child {
     border-top-right-radius: var(--_ROUND);
     border-top-left-radius: var(--_ROUND);
@@ -213,16 +215,15 @@ picture {
 }
 
 #abt {
-    
+
     background-image: url(decor1.png), url(decor2.png), url(decor3.png);
     background-repeat: no-repeat;
     background-position: 102% 37%, 0px 4px, 3px 42%;
     background-size: 45% auto, 23% auto, 36% auto;
     background-size: min(45%, 240px) auto, min(23%, 141px), min(36%, 180px);
-    background-image: image-set(url(decor1.webp) type("image/webp"), url(decor1.png) type("image/png")), 
-    image-set(url(decor2.webp) type("image/webp"), url(decor2.png) type("image/png")),
+    background-image: image-set(url(decor1.webp) type("image/webp"), url(decor1.png) type("image/png")),
+        image-set(url(decor2.webp) type("image/webp"), url(decor2.png) type("image/png")),
         image-set(url(decor3.webp) type("image/webp"), url(decor3.png) type("image/png"))
-
 }
 
 #controls input {
@@ -251,9 +252,11 @@ picture {
     margin-left: 4px;
     margin-top: 1px
 }
+
 #aboutme {
     place-items: center;
 }
+
 #about {
     background-attachment: local;
     background-repeat: no-repeat;
@@ -282,7 +285,7 @@ picture {
 @media screen and (width <=765px) {
     #about {
         background-size: 18% auto;
-        background-position: 150px -150px;
+        background-position: 138px -150px;
     }
 
     @keyframes popin {
@@ -291,7 +294,7 @@ picture {
         }
 
         100% {
-            background-position-y: -55px
+            background-position-y: -56px
         }
     }
 }
@@ -397,6 +400,7 @@ marquee {
 }
 
 #pfp {
+    background-color: white;
     width: 30vw;
     max-width: 130px;
 }
@@ -541,6 +545,7 @@ p {
 }
 
 #bunny {
+    background-color: white;
     /* animation: vibe 1s ease infinite alternate-reverse; */
     /* animation-play-state: paused; */
     margin-inline: auto;

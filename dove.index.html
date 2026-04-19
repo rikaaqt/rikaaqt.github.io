@@ -57,7 +57,6 @@ desc = 'page is about rika pika!!!'
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest" fetchpriority="low">
     <link rel="shortcut icon" href="favicon.ico">
     <meta name="robots" content="index">
     <meta name="theme-color" content="#FAF9F6">
@@ -92,7 +91,7 @@ desc = 'page is about rika pika!!!'
     <link rel="preload" as="font" crossorigin="anonymous" href="HVD Fonts  MikadoRegular.woff2" type="font/woff2"
         blocking="render">
     <!--{{return `<style>${await sheet('styles.css')}</style>`}}-->
-    <!--https://wiki.whatwg.org/wiki/MetaExtensions-->
+    <link rel="manifest" href="site.webmanifest" fetchpriority="low">
 </head>
 
 <body>
@@ -118,7 +117,7 @@ desc = 'page is about rika pika!!!'
                 <picture>
                     <source srcset="pic.avif" type="image/avif">
                     <source srcset="pic.webp" type="image/webp">
-                    <img id="pfp" class="img" src="pic.jpg" alt="Cute Picnic with bunny in basket" title="Rika!">
+                    <img id="pfp" fetchpriority="high" class="img" src="pic.jpg" alt="Cute Picnic with bunny in basket" title="Rika!">
                 </picture>
                 <small style="font-style:italic;margin-left:10px;display:block;place-self:start"
                     id="princess">#princess!</small>
@@ -254,11 +253,11 @@ desc = 'page is about rika pika!!!'
             .onclick = function () {
                 navigator.share(share)
             }
-        var abt = d.getElementById('about')
-        setTimeout(function(){
-            abt.style.willChange = ''
+        var abt = d.getElementById('about').style
+        setTimeout(function () {
+            abt.willChange = ''
         }, 1500)
-        abt.style.willChange = 'background-position'
+        abt.willChange = 'background-position'
     }(document)
 </script>
 
