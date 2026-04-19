@@ -216,7 +216,7 @@ picture {
     
     background-image: url(decor1.png), url(decor2.png), url(decor3.png);
     background-repeat: no-repeat;
-    background-position: 102% 37%, 0px 4px, 3px 44%;
+    background-position: 102% 37%, 0px 4px, 3px 42%;
     background-size: 45% auto, 23% auto, 36% auto;
     background-size: min(45%, 240px) auto, min(23%, 141px), min(36%, 180px);
     background-image: image-set(url(decor1.webp) type("image/webp"), url(decor1.png) type("image/png")), 
