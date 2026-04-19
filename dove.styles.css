@@ -126,6 +126,7 @@ html {
 }
 
 #bg {
+    background-attachment: fixed;
     --pixel-size: 30px;
     width: 100vw;
     height: 100vh;
@@ -162,7 +163,7 @@ body {
     height: 100vh;
     overflow: auto;
     position: relative;
-    }
+}
 
 main {
     padding-top: 6px;
@@ -185,6 +186,8 @@ main {
 
 .box {
     display: grid;
+    text-align: -moz-center;
+    text-align:-webkit-center;
     overflow: auto;
     border: 3px solid var(--_PINK);
     background-color: #ffe0eb;
@@ -197,7 +200,10 @@ picture {
     /* display: inline; */
     /* display:contents; */
 }
+.box:nth-of-type(2) {
+        text-align: unset;
 
+}
 .box:first-child {
     border-top-right-radius: var(--_ROUND);
     border-top-left-radius: var(--_ROUND);
@@ -207,13 +213,18 @@ picture {
 }
 
 #abt {
-    /* background-repeat: no-repeat;
-  background: radial-gradient(circle closest-side at 70% 50%,
-        var(--_DARK_PINK) 0%,
-        var(--_DARK_PINK) 40%,
-        var(--_LIGHT_PINK) 40%,
-        var(--_LIGHT_PINK) 100%) 0 0 / 600px 600px */
+    
+    background-image: url(decor1.png), url(decor2.png), url(decor3.png);
+    background-repeat: no-repeat;
+    background-position: 102% 37%, 0px 4px, 3px 44%;
+    background-size: 45% auto, 23% auto, 36% auto;
+    background-size: min(45%, 240px) auto, min(23%, 141px), min(36%, 180px);
+    background-image: image-set(url(decor1.webp) type("image/webp"), url(decor1.png) type("image/png")), 
+    image-set(url(decor2.webp) type("image/webp"), url(decor2.png) type("image/png")),
+        image-set(url(decor3.webp) type("image/webp"), url(decor3.png) type("image/png"))
+
 }
+
 #controls input {
     vertical-align: text-top;
 
@@ -240,7 +251,9 @@ picture {
     margin-left: 4px;
     margin-top: 1px
 }
-
+#aboutme {
+    place-items: center;
+}
 #about {
     background-attachment: local;
     background-repeat: no-repeat;
@@ -321,7 +334,7 @@ marquee,
     text-shadow: -4px 4px 5px rgba(243, 130, 181, 0.3);
     -webkit-text-stroke-color: rgba(246, 96, 163, 0.358);
     -webkit-text-stroke-width: .1px;
-    color: rgb(164, 65, 110);  
+    color: rgb(164, 65, 110);
 }
 
 #heading span:nth-child(2) {
@@ -363,7 +376,7 @@ marquee {
 .textbox {
     border: 2px solid var(--_PINK);
     /* background-color: var(--_DARK_PINK); */
-    filter:brightness(80%);
+    filter: brightness(80%);
     margin-bottom: 5px;
     margin-inline: auto;
     width: 85%;
@@ -390,7 +403,10 @@ marquee {
 
 audio {
     width: 90%;
+    animation: rainbow 4s linear infinite;
+    animation-play-state: paused;
     place-self: center;
+
 }
 
 audio::-webkit-time-remaining-display,
@@ -412,6 +428,17 @@ audio::-webkit-media-controls-panel {
     justify-self: end;
     align-self: start;
     width: var(--stretch)
+}
+
+audio:where(:playing, [aria-pressed="true"]) {
+    animation-play-state: running;
+}
+
+@keyframes rainbow {
+    /*:
+    let length = 36
+    return Array.from({length}, (_, i) => `${(i / length) * 100}% {filter: hue-rotate(${(360 / length) * i}deg)}`).join('') + '100% {filter:hue-rotate(360deg)}'
+    */
 }
 
 button {
@@ -514,8 +541,26 @@ p {
 }
 
 #bunny {
+    /* animation: vibe 1s ease infinite alternate-reverse; */
+    /* animation-play-state: paused; */
     margin-inline: auto;
+    /* transform: rotate(0deg) */
 }
+
+/* @keyframes vibe {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    33% {
+        transform: rotate(5deg)
+    }
+
+  
+    100% {
+        transform: rotate(-5deg)
+    }
+} */
 
 @font-face {
     font-family: 'Mikado Regular';
