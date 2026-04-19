@@ -2,7 +2,7 @@
     --_SAKURA_PINK: #f9c6d4;
     --_CLOUD_WHITE: #faf9f6;
     --_LIGHT_PINK: #FFE5ee;
-        --_MID_PINK: #efd7df;
+    --_MID_PINK: #efd7df;
 
     --_DARK_PINK: #FFD7EC;
     --_PINK: #f597c1;
@@ -219,9 +219,44 @@ picture {
 }
 
 #about {
+    background-attachment: local;
+    background-repeat: no-repeat;
+    background-image: url(top.png);
+    background-repeat: no-repeat;
+    background-image: image-set(url(top.webp) type("image/webp"), url(top.png) type("image/png"));
+    background-size: 150px auto;
+    background-position: 26% -180px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: start;
+    animation: popin .7s ease-in-out .5s 1 forwards
+}
+
+@keyframes popin {
+    0% {
+        background-position-y: -180px
+    }
+
+    100% {
+        background-position-y: -80px
+    }
+}
+
+
+@media screen and (width <=765px) {
+    #about {
+        background-size: 18% auto;
+        background-position: 150px -150px;
+    }
+
+    @keyframes popin {
+        0% {
+            background-position-y: -150px
+        }
+        100% {
+            background-position-y: -55px
+        }
+    }
 }
 
 .box:last-child {
@@ -374,12 +409,15 @@ input[type="text"] {
     display: block;
     border-color: var(--_PINK)
 }
+
 p {
     margin-block: 3px
 }
+
 :heading {
     margin-block: 10px
 }
+
 #sendmessage {
     width: 50%;
     max-width: 300px;
@@ -403,8 +441,20 @@ p {
     #about {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
+        background-image: url(corner.png);
+        background-image: image-set(url(corner.webp) type("image/webp"), url(corner.png) type("image/png"));
+        background-size: 45% auto;
+        background-position: 95% 180%;
+        animation-duration: 1s
     }
-
+  @keyframes popin {
+        0% {
+            background-position-y: 180%
+        }
+        100% {
+            background-position-y: 100%
+        }
+    }
     audio {
         margin-top: 5px;
         margin-inline: 5px
