@@ -254,6 +254,11 @@ desc = 'page is about rika pika!!!'
             .onclick = function () {
                 navigator.share(share)
             }
+        var abt = d.getElementById('about')
+        setTimeout(function(){
+            abt.style.willChange = ''
+        }, 1500)
+        abt.style.willChange = 'background-position'
     }(document)
 </script>
 
