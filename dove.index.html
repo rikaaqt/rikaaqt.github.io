@@ -150,7 +150,7 @@ desc = 'page is about rika pika!!!'
                         type="audio/mp3">
                 </audio>
                 <div class="textbox">
-                    <marquee scrollamount="3">Click to play <cite>NOBLE</cite> by F3miii! 🎵</marquee>
+                    <marquee scrollamount="3">Click to play <cite>NOBLE</cite> by F3miii!</marquee>
                 </div>
             </div>
         </section>
@@ -171,7 +171,7 @@ desc = 'page is about rika pika!!!'
                 </picture>
             </p>
             <h3>My interests!</h3>
-            <p>I love pinapples and oranges. I love love love kittens and doggies (mostly kitty’s) AND BUNNIES</p>
+            <p>I love pinapples and oranges. I love love love kittens and doggies (mostly kitties) AND BUNNIES</p>
             <h3>MY DISLIKES</h3>
             <ul>
                 <li>Onions</li>
@@ -223,17 +223,10 @@ desc = 'page is about rika pika!!!'
         </section>
     </main>
 </body>
+<script src="https://addsoupbase.github.io/aria.js"></script>
 <script>
     !function () {
         'use strict'
-        var n = new Set
-        function submit(e) {
-            if (n.has(this)) e.preventDefault()
-            else n.add(this)
-        }
-        [].forEach.call(document.forms, function (o) {
-            o.addEventListener('submit', submit)
-        })
         document.querySelector('audio').addEventListener('mouseover', function () {
             var n = document.createElement('link')
             n.rel = 'preconnect'

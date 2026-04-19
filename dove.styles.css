@@ -3,7 +3,7 @@
     --_CLOUD_WHITE: #faf9f6;
     --_LIGHT_PINK: #FFE5ee;
     --_MID_PINK: #efd7df;
-
+    /* margin-right: -15px; */
     --_DARK_PINK: #FFD7EC;
     --_PINK: #f597c1;
     --_DARKER_PINK: #f174ac;
@@ -19,6 +19,7 @@
 }
 
 #princess {
+    width: 65%;
     text-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1)
 }
 
@@ -154,17 +155,24 @@ p,
     max-width: 74%;
 }
 
+body {
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+}
+
 main {
     scroll-behavior: smooth;
     padding-top: 6px;
+    margin-right: -5px;
     /* border: 1px solid black; */
-    height: 100%;
     /* padding-bottom:8vh; */
     /* margin-block:10px; */
     transform: translateX(-50%);
     /* top: 1%; */
-    position: fixed;
+    position: absolute;
     left: 50%;
+    /* left: calc(50% + 10px); */
     width: 90vw;
     /* max-height: 550px; */
     max-width: 750px;
