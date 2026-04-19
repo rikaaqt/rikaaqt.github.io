@@ -1,4 +1,6 @@
 :root {
+    scroll-behavior: smooth;
+
     --_SAKURA_PINK: #f9c6d4;
     --_CLOUD_WHITE: #faf9f6;
     --_LIGHT_PINK: #FFE5ee;
@@ -160,10 +162,9 @@ body {
     height: 100vh;
     overflow: auto;
     position: relative;
-}
+    }
 
 main {
-    scroll-behavior: smooth;
     padding-top: 6px;
     margin-right: -5px;
     /* border: 1px solid black; */
