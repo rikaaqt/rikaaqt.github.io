@@ -8,7 +8,7 @@
     --_PINK: #f597c1;
     --_DARKER_PINK: #f174ac;
     --_ROUND: 8px;
-    font-family: "Mikado Regular", monospace;
+    font-family: "Mikado Regular", sans-serif;
     font-size: 1.2em;
     background-color: var(--_LIGHT_PINK);
     --_DEFAULT: url("valentinescursors/spade.cur"), default;
@@ -18,9 +18,14 @@
     caret-color: var(--_DARKER_PINK)
 }
 
+#princess {
+    text-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1)
+}
+
 .social {
     width: 100%;
-    position: relative
+    position: relative;
+    text-underline-offset: 3px;
 }
 
 nav {
@@ -37,7 +42,7 @@ nav {
     width: 20px;
     height: 20px;
     display: inline-block;
-    background-size: contain;
+    background-size: 100%;
     vertical-align: baseline;
 }
 
@@ -253,6 +258,7 @@ picture {
         0% {
             background-position-y: -150px
         }
+
         100% {
             background-position-y: -55px
         }
@@ -447,14 +453,17 @@ p {
         background-position: 95% 180%;
         animation-duration: 1s
     }
-  @keyframes popin {
+
+    @keyframes popin {
         0% {
             background-position-y: 180%
         }
+
         100% {
             background-position-y: 100%
         }
     }
+
     audio {
         margin-top: 5px;
         margin-inline: 5px
@@ -468,7 +477,7 @@ p {
 
     #socials {
         align-self: center;
-        height: 125%;
+        height: 110%;
         place-content: end;
     }
 
