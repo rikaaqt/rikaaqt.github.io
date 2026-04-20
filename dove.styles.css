@@ -94,8 +94,13 @@ ol {
     text-align: center;
     place-self: center;
 }
-
+@counter-style heart {
+    system: cyclic;
+    symbols: "❥";
+    suffix: " ";
+}
 li {
+    list-style: heart;
     width: fit-content;
     font-size: .8em;
     /* max-width: 70%; */
@@ -148,11 +153,9 @@ html {
 li::marker {
     content: "❥ "
 }
-
 li:nth-child(odd)::marker {
     color: var(--_DARKER_PINK)
 }
-
 p,
 :heading {
     justify-self: center;
