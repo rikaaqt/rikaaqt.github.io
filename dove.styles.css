@@ -188,6 +188,7 @@ main {
 }
 
 .box {
+    contain: content;
     display: grid;
     text-align: -moz-center;
     text-align: -webkit-center;
@@ -392,7 +393,10 @@ marquee {
     font-size: small;
     color: var(--_DARKER_PINK)
 }
-
+.textbox,.textbox * {
+    --user-select: none;
+    cursor: pointer
+}
 .img {
     outline: 2px solid var(--_PINK);
     /* outline-style: dashed; */
@@ -437,7 +441,7 @@ audio::-webkit-media-controls-panel {
     width: var(--stretch)
 }
 
-audio:where(:playing, [aria-pressed="true"]) {
+audio:where(:playing, [data-pressed="true"]) {
     animation-play-state: running;
 }
 
