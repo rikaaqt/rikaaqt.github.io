@@ -97,11 +97,11 @@ desc = 'page is about rika pika!!!'
 <body>
     <div id="bg" aria-hidden="true"></div>
     <main>
-        <section class="box" style="display:flex;justify-content:space-between;padding-inline:6px"><span id="webURL"
+        <section class="box" style="display:flex;justify-content:space-between;padding-inline:6px"><header><span id="webURL"
                 class="spaced"
                 style="text-decoration: underline;text-decoration-color: var(--_DARKER_PINK);outline:none;white-space: nowrap;"
                 contenteditable="true" spellcheck="false" tabindex="-1">https://rikaaqt.github.io</span>
-                <script>!function(n){'use strict';function l(n){var z=n.data;z&&(/\n/.test(z)||this.textContent.length+z.length>=25)&&(n.returnValue=!!(n.preventDefault&&n.preventDefault()))}n.addEventListener('textInput',l);n.addEventListener('input',l);try{n.contentEditable='plaintext-only'}catch{}}(document.getElementById('webURL'))</script>
+            <script>!function(n){'use strict';function l(n){var z=n.data;z&&(/\n/.test(z)||this.textContent.length+z.length>25)&&(n.returnValue=!!(n.preventDefault&&n.preventDefault()))}n.addEventListener('textInput',l);n.addEventListener('input',l);try{n.contentEditable='plaintext-only'}catch(e){}}(document.getElementById('webURL'))</script>
             <div role="navigation" style="letter-spacing: 5px;" id="controls"><a style="display:contents"
                     aria-label="Go to message form" href="#namefield"><input type="image" aria-hidden="true"
                         id="mailbutton"
@@ -111,14 +111,15 @@ desc = 'page is about rika pika!!!'
                     id="wifibutton"><a style="display: inline;" href="#aboutme" aria-label="Jump to about me"><input
                         type="image"
                         src="data:image/svg+xml,%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20version%3D%221.0%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2064%2064%22%20enable-background%3D%22new%200%200%2064%2064%22%20xml%3Aspace%3D%22preserve%22%20fill%3D%22%23f174ac%22%20stroke%3D%22%23f174ac%22%3E%0D%3Cg%20id%3D%22SVGRepo_bgCarrier%22%20stroke-width%3D%220%22%2F%3E%0D%3Cg%20id%3D%22SVGRepo_tracerCarrier%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0D%3Cg%20id%3D%22SVGRepo_iconCarrier%22%3E%20%3Cpath%20fill%3D%22%23f174ac%22%20d%3D%22M62.79%2C29.172l-28-28C34.009%2C0.391%2C32.985%2C0%2C31.962%2C0s-2.047%2C0.391-2.828%2C1.172l-28%2C28%20c-1.562%2C1.566-1.484%2C4.016%2C0.078%2C5.578c1.566%2C1.57%2C3.855%2C1.801%2C5.422%2C0.234L8%2C33.617V60c0%2C2.211%2C1.789%2C4%2C4%2C4h16V48h8v16h16%20c2.211%2C0%2C4-1.789%2C4-4V33.695l1.195%2C1.195c1.562%2C1.562%2C3.949%2C1.422%2C5.516-0.141C64.274%2C33.188%2C64.356%2C30.734%2C62.79%2C29.172z%22%2F%3E%20%3C%2Fg%3E%0D%3C%2Fsvg%3E"
-                        id="homebutton" aria-hidden="true" tabindex="-1"></a></div>
+                        id="homebutton" aria-hidden="true" tabindex="-1"></a></div></header>
         </section>
         <section class="box" id="about">
             <div>
                 <picture>
                     <source srcset="pic.avif" type="image/avif">
                     <source srcset="pic.webp" type="image/webp">
-                    <img id="pfp" fetchpriority="high" class="img" src="pic.jpg" alt="Cute Picnic with bunny in basket" title="Rika!">
+                    <img id="pfp" fetchpriority="high" class="img" src="pic.jpg" alt="Cute Picnic with bunny in basket"
+                        title="Rika!">
                 </picture>
                 <small style="font-style:italic;margin-left:10px;display:block;place-self:start"
                     id="princess">#princess!</small>
@@ -152,6 +153,11 @@ desc = 'page is about rika pika!!!'
                     <source
                         src="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1"
                         type="audio/mp3">
+                        <source
+                        src="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1"
+                        type="audio/mpeg">
+                        <source src="https://www.dropbox.com/scl/fi/2fzcjwhbk2yy5iiyx22ze/NOBLE.ogg?rlkey=3jsgqg4vyidm5mt7cpt0zy23z&st=czrblbf9&dl=0&raw=1"
+                        type="audio/ogg">
                 </audio>
                 <div class="textbox">
                     <marquee scrollamount="3"><label for="audio">Click to play <cite
@@ -172,8 +178,8 @@ desc = 'page is about rika pika!!!'
             <p>I love running around my yard, I love playing Roblox, doing my hair, talking to
                 my amazing
                 friends, calling my family, I also really really love to read books about romance! <picture>
-                    <source srcset="emoji/wow.webp" type="image/webp"><img style="width:40px;height:40px" alt="Exclamation" loading="lazy"
-                        class="emoji" src="emoji/wow.png">
+                    <source srcset="emoji/wow.webp" type="image/webp"><img style="width:40px;height:40px"
+                        alt="Exclamation" loading="lazy" class="emoji" src="emoji/wow.png">
                 </picture>
             </p>
             <h3>My interests!</h3>
@@ -218,15 +224,17 @@ desc = 'page is about rika pika!!!'
                     src="emoji/suprised.gif" class="emoji" alt="suprised" style="width:40px;height:40px">
             </p>
         </section>
-        <section class="box">
-            <h2>Send me a message!</h2>
-            <form id="sendmessage" method="POST" action="https://drawing-submissions.deno.dev?user=rika">
-                <input type="text" id="namefield" name="name" placeholder="Name" enterkeyhint="next"
-                    autocomplete="username">
-                <input type="text" required name="message" placeholder="Message" enterkeyhint="send">
-                <button>Send!</button>
-            </form>
-        </section>
+        <footer>
+            <section class="box">
+                <h2>Send me a message!</h2>
+                <form id="sendmessage" method="POST" action="https://drawing-submissions.deno.dev?user=rika">
+                    <input type="text" id="namefield" name="name" placeholder="Name" enterkeyhint="next"
+                        autocomplete="username">
+                    <input type="text" required name="message" placeholder="Message" enterkeyhint="send">
+                    <button>Send!</button>
+                </form>
+            </section>
+        </footer>
     </main>
 </body>
 <script src="https://addsoupbase.github.io/aria.js" async></script>

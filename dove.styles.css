@@ -94,11 +94,13 @@ ol {
     text-align: center;
     place-self: center;
 }
+
 @counter-style heart {
     system: cyclic;
     symbols: "❥";
     suffix: " ";
 }
+
 li {
     list-style: heart;
     width: fit-content;
@@ -115,6 +117,13 @@ li {
 
 :_text-selectable {
     cursor: text
+}
+
+header,
+footer {
+    display: flex;
+    place-content: space-between;
+    width: 100%;
 }
 
 * {
@@ -153,9 +162,11 @@ html {
 li::marker {
     content: "❥ "
 }
+
 li:nth-child(odd)::marker {
     color: var(--_DARKER_PINK)
 }
+
 p,
 :heading {
     justify-self: center;
@@ -232,7 +243,12 @@ picture {
 
 #controls input {
     vertical-align: text-top;
+}
 
+@supports (-apple-pay-button-type: plain) {
+    #controls input {
+        transform: translateY(2px)
+    }
 }
 
 #mailbutton {
@@ -393,10 +409,13 @@ marquee {
     font-size: small;
     color: var(--_DARKER_PINK)
 }
-.textbox,.textbox * {
+
+.textbox,
+.textbox * {
     --user-select: none;
     cursor: pointer
 }
+
 .img {
     outline: 2px solid var(--_PINK);
     /* outline-style: dashed; */
