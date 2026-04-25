@@ -497,6 +497,8 @@ audio:where(:playing, [data-pressed="true"]) {
 }
 
 button {
+    appearance:none;
+    color:black;
     border-color: var(--_DARKER_PINK);
     border-style: solid;
     border-radius: 3px;
@@ -512,14 +514,20 @@ button {
         font-size: 1.5em;
     }
 }
-
+button,input {
+    font-family: inherit;
+}
 input[type="text"] {
     background-color: transparent;
     border-style: solid;
     display: block;
+    font-size:16px;
+    color:black;
     border-color: var(--_PINK)
 }
-
+input::placeholder {
+    color:black
+}
 p {
     margin-block: 3px
 }
