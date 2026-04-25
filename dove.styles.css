@@ -30,6 +30,7 @@
     width: 100%;
     position: relative;
     text-underline-offset: 3px;
+    white-space: nowrap;
 }
 
 nav {
@@ -51,28 +52,33 @@ nav {
 }
 
 #roblox::before {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
+    content: '' / "Roblox";
+    top:55%;
     left: -15%;
     background-image: url(roblox.svg)
 }
 
 #tiktok::before {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     left: -30%;
+    content: '' / "TikTok";
     background-image: url(tiktok.svg)
 }
 
 #instagram::before {
     top: 52%;
+    content: '' / "Instagram";
     background-image: url(instagram.svg)
 }
 
 #spotify::before {
-    height: 17px;
-    width: 17px;
+    height: 18px;
+    width: 18px;
     left: -8%;
+    content: '' / "Spotify";
     background-image: url(spotify.svg)
 }
 
@@ -407,6 +413,8 @@ marquee {
 }
 
 .textbox {
+    border-radius: 10px;
+    padding-inline: 2px;
     border: 2px solid var(--_PINK);
     /* background-color: var(--_DARK_PINK); */
     filter: brightness(80%);
@@ -446,7 +454,10 @@ audio {
     animation: rainbow 4s linear infinite;
     animation-play-state: paused;
     place-self: center;
-
+    background-color: var(--_SAKURA_PINK);
+    border-radius: 10px;
+    corner-shape: scoop;
+    outline: 2px solid var(--_PINK)
 }
 
 audio::-webkit-time-remaining-display,
@@ -474,6 +485,10 @@ audio:where(:playing, [data-pressed="true"]) {
     animation-play-state: running;
 }
 
+#about:has(audio:where(:playing, [data-pressed="true"])) #bunny {
+    animation-play-state: running;
+}
+
 @keyframes rainbow {
     /*:
     let length = 36
@@ -489,6 +504,7 @@ button {
     background-color: var(--_PINK);
     width: min-content;
     place-self: center;
+    font-size: .9em;
 }
 
 @media screen and (width <=368px) {
@@ -553,7 +569,7 @@ p {
     }
 
     audio {
-        margin-top: 5px;
+        margin-top: 7px;
         margin-inline: 5px
     }
 
@@ -580,7 +596,23 @@ p {
     }
 }
 
+@keyframes bunnyDance {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(3px);
+    }
+}
+
 #bunny {
+    border-radius: 8px;
+    animation: bunnyDance 0.6s ease-in-out infinite alternate;
+    animation-play-state: paused;
+    /* only dance when music plays */
+    transform-origin: center bottom;
+    /* makes the wiggle cuter */
     background-color: white;
     /* animation: vibe 1s ease infinite alternate-reverse; */
     /* animation-play-state: paused; */

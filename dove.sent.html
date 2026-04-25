@@ -15,9 +15,6 @@ desc = 'Thank you for sending a message!'
     <!-- <script src='https://addsoupbase.github.io/legacy.js' nomodule></script> -->
     <!-- <script src="https://addsoupbase.github.io/css.js" blocking="render"></script> -->
     <!-- <script src="https://addsoupbase.github.io/css_bad.js" nomodule></script> -->
-    <!-- <noscript> -->
-    <link rel="stylesheet" href="https://addsoupbase.github.io/noscript.css">
-    <!-- </noscript> -->
     <meta http-equiv="content-language" content="en">
     <meta property="og:locale" content="en_US">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -92,15 +89,15 @@ desc = 'Thank you for sending a message!'
 </head>
 
 <body>
-    <div id="bg"></div>
-    <main>
+    <div id="bg" aria-hidden="true"></div>
+    <main style="height:100%;place-content: center;">
         <section class="box">
             <h1>Thanks so much!</h1>
             <p style="font-size: 1.3em;">
                 <a href="https://rikaaqt.github.io" autofocus style="text-decoration-color:-webkit-link;">Go back!</a>
             </p>
             <picture>
-                <source srcset="kiss.webp" type="image/webp"><img style="width:50vw;max-width:300px;height:auto"
+                <source srcset="kiss.webp" type="image/webp"><img style="width:50vw;max-width:324px;height:auto"
                     src="kiss.gif" alt="Pompompurin KISSY KISS">
             </picture>
         </section>

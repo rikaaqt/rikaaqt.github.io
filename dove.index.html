@@ -104,15 +104,15 @@ desc = 'page is about rika pika!!!'
                 contenteditable="true" spellcheck="false" tabindex="-1">https://rikaaqt.github.io</span>
             <script>!function(n){'use strict';function l(n){var z=n.data;z&&(/\n/.test(z)||this.textContent.length+z.length>25)&&(n.returnValue=!!(n.preventDefault&&n.preventDefault()))}n.addEventListener('textInput',l);n.addEventListener('input',l);try{n.contentEditable='plaintext-only'}catch(e){}}(document.getElementById('webURL'))</script>
             <div role="navigation" style="letter-spacing: 5px;padding-right:6px" id="controls"><a style="display:contents"
-                    aria-label="Go to message form" href="#namefield"><input type="image" aria-hidden="true"
+                    aria-label="Go to message form" href="#namefield"><input alt="📧" type="image" aria-hidden="true"
                         id="mailbutton"
                         src="<!--{{return esc`${await dataURI('mail.svg')}`}}-->"></a><input
                     type="image" aria-label="Share"
                     src="<!--{{return esc`${await dataURI('share.svg')}`}}-->"
-                    id="wifibutton"><a style="display: inline;" href="#aboutme" aria-label="Jump to about me"><input
+                    id="wifibutton" alt="🛜"><a style="display: inline;" href="#aboutme" aria-label="Jump to about me"><input
                         type="image"
                         src="<!--{{return esc`${await dataURI('home.svg')}`}}-->"
-                        id="homebutton" aria-hidden="true" tabindex="-1"></a></div></header>
+                        id="homebutton" alt="🏠" aria-hidden="true" tabindex="-1"></a></div></header>
         </section>
         <section class="box" id="about">
             <div>
@@ -171,7 +171,7 @@ desc = 'page is about rika pika!!!'
                 </audio>
                 <div class="textbox">
                     <marquee scrollamount="3"><label for="audio">Click to play <cite
-                                style="cursor:pointer;margin-right: 3px">the cat from ipanema</cite> by j1gggs!</label></marquee>
+                                style="cursor:pointer;">the cat from ipanema</cite> by j1gggs!</label></marquee>
                 </div>
             </div>
         </section>
@@ -257,7 +257,7 @@ desc = 'page is about rika pika!!!'
         }
         m.addEventListener('play', toggle)
         m.addEventListener('pause', toggle)
-        var a = d.querySelector('label[for="audio"]')
+        var a = d.querySelector('.textbox')
         a.onclick = function () {
             m.paused ? m.play() : m.pause()
         }
