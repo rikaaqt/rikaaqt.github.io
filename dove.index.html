@@ -78,7 +78,8 @@ desc = 'page is about rika pika!!!'
     <meta name="apple-mobile-web-app-title" content="<!--{{return title}}-->">
     <link rel="apple-touch-startup-image" href="favicon.ico">
     <title><!--{{return title}}--></title>
-    <meta property="og:audio" content="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1">
+    <meta property="og:audio"
+        content="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1">
     <meta property="og:audio:type" content="audio/mp3">
     <!--local-->
     <script src='https://addsoupbase.github.io/legacy.js' nomodule></script>
@@ -97,17 +98,16 @@ desc = 'page is about rika pika!!!'
     <!--{{return`roblox spotify tiktok instagram`.split(' ').map(o=>`<link rel="preload" as="image" type="image/svg+xml" href="${o}.svg">`).join('')}}-->
     <!--{{return`<style>${await sheet('styles.css')}</style>`}}-->
     <link rel="manifest" href="site.webmanifest" fetchpriority="low">
-    <link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev">
-    <link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json"
+    <link rel="modulepreload" href="https://addsoupbase.github.io/webcomponents/paper-canvas.js"
         crossorigin="anonymous">
 </head>
 
 <body>
     <div id="bg" aria-hidden="true"></div>
     <main>
-        <section class="box" style="display:flex;justify-content:space-between">
+        <section class="box" style="display:flex;justify-content:space-between;">
             <header><span id="webURL" class="spaced"
-                    style="text-decoration: underline;text-decoration-color: var(--_DARKER_PINK);outline-offset:-1px;white-space: nowrap;"
+                    style="content-visibility: auto;text-decoration: underline;text-decoration-color: var(--_DARKER_PINK);outline-offset:-1px;white-space: nowrap;"
                     contenteditable="true" spellcheck="false" tabindex="-1">https://rikaaqt.github.io</span>
                 <script>!function (n) { 'use strict'; function l(n) { var z = n.data; z && (/\n/.test(z) || this.textContent.length + z.length > 25) && (n.returnValue = !!(n.preventDefault && n.preventDefault())) } n.addEventListener('textInput', l); n.addEventListener('input', l); try { n.contentEditable = 'plaintext-only' } catch (e) { } }(document.getElementById('webURL'))</script>
                 <div role="navigation" style="letter-spacing: 5px;padding-right:6px" id="controls"><a
@@ -252,6 +252,26 @@ desc = 'page is about rika pika!!!'
                     role="status">0
                     of 0</span><button id="prev" disabled aria-label="Previous Entry">→</button></div>
         </section>
+        <section class="box">
+            <h2>Draw me something!</h2>
+            <form method="POST" action="https://drawing-submissions.deno.dev?user=rika" enctype="multipart/form-data" id="paperform">
+                <div style="padding-right:16px">
+                    <input type="range" value="1" min="1" max="60" step=".1" id="brushsize" aria-label="Brush Size">
+                    <paper-canvas name="drawing" type="file" required id="paper"></paper-canvas>
+                </div>
+                <div role="group" id="papercontrols" aria-label="Paper Controls"
+                    style="margin-bottom:30px;font-size:1.2em">
+                    <input draggable="false" id="colorpicker" type="image"
+                        src="<!--{{return esc`${await dataURI('color.svg')}`}}-->" alt="🎨" aria-label="Color">
+                    <input draggable="false" id="undo" type="image"
+                        src="<!--{{return esc`${await dataURI('undo.svg')}`}}-->" alt="↩️" aria-label="Undo">
+                </div>
+                <button type="submit">Send!</button>
+            </form>
+            <input type="color"
+                style="z-index:-999;pointer-events:none;--user-select:none;transform:translate(-50%,-50%) scale(0);top:anchor(bottom);left:anchor(right);position: absolute;position-anchor:--color"
+                anchor="colorpicker" tabindex="-1" aria-hidden="true" id="color">
+        </section>
         <footer class="box">
             <section>
                 <h2>Send me a message!</h2>
@@ -269,6 +289,12 @@ desc = 'page is about rika pika!!!'
 <script>
     !function (d, css) {
         'use strict'
+        d.getElementById('papercontrols')
+            .addEventListener('click', function (n) {
+                if (n.target.tagName === 'INPUT') {
+                    n.preventDefault()
+                }
+            }, true)
         var di = d.getElementById('diary')
             , m = d.querySelector('audio')
             , c = d.getElementById('controls2')
@@ -352,7 +378,7 @@ desc = 'page is about rika pika!!!'
             xhr.onload = function () {
                 entries = xhr.response
                 length = entries.length
-                putEntry(true)
+                putEntry(false)
             }
             xhr.send()
         }
@@ -360,9 +386,9 @@ desc = 'page is about rika pika!!!'
         function putEntry(prev) {
             var xhr = new XMLHttpRequest
             xhr.open("GET", url + entries[index].id, true)
-            xhr.responseType = 'document'
+            // xhr.responseType = 'document'
             xhr.onload = function () {
-                var doc = xhr.response
+                var doc = new DOMParser().parseFromString(xhr.responseText, 'text/html')
                 lastTime = new Date(xhr.getResponseHeader('Last-Modified'))
                 // var style = doc.head.querySelector('style')
                 // style.textContent = '@scope {' + style.textContent + '}'
@@ -376,26 +402,35 @@ desc = 'page is about rika pika!!!'
                 style.fontSize = '.9em'
                 style.backgroundColor = 'transparent'
                 var p = entries[index + 1]
-                if (prev && p) {
+                if (prev === 2 && p) {
                     var pre = d.createElement('link')
                     pre.rel = 'prefetch'
                     pre.href = url + p.id
                     doc.head.appendChild(pre)
                 }
-                svt(function () {
+                function go() {
                     if (shadow) {
                         shadow.replaceChildren(doc.documentElement)
                     }
                     else {
                         frame.srcdoc = '<!DOCTYPE html>' + doc.documentElement.outerHTML.replace('<html', '<html lang="en"')
-                        .replace('<head>', '<head>    <meta http-equiv="content-language" content="en"><meta property="og:locale" content="en_US"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">')
+                            .replace('<head>', '<head><meta http-equiv="content-language" content="en"><meta property="og:locale" content="en_US"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">')
                     }
-                }, 5)
+                }
+                prev === false ? go() : svt(go, 5)
                 updateStatus()
             }
             xhr.send()
         }
         addEventListener('load', function () {
+            d.querySelector('header')
+                .oncontentvisibilityautostatechange = function (e) {
+                    if (e.skipped) {
+                        d.head.appendChild(d.createRange().createContextualFragment('<link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev"><link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json" crossorigin="anonymous">'))
+                        this.oncontentvisibilityautostatechange = null
+                        this.style.contentVisibility = ''
+                    }
+                }
             if (typeof IntersectionObserver === 'function') {
                 var ie = new IntersectionObserver(function (n) {
                     if (n[0].isIntersecting) {
@@ -408,6 +443,35 @@ desc = 'page is about rika pika!!!'
             else doDiaryStuffs()
         }, { once: true })
     }(document, window[Symbol.for('[[CSSModule]]')])
+</script>
+<script type="module" async>
+    import "https://addsoupbase.github.io/webcomponents/paper-canvas.js"
+    import * as v from 'https://addsoupbase.github.io/v4.js'
+    const { brushsize, colorpicker, color, undo, paper } = v.id
+    brushsize.on({
+        change() {
+            paper.brushsize = this.valueAsNumber
+        }
+    })
+    colorpicker.on({
+        click: color.click.bind(color)
+    })
+    color.on({
+        input() {
+            let c = this.value
+            paper.color = brushsize.style.accentColor = c
+        }
+    })
+    paper.on({
+        $wheel({ deltaY: y }) {
+            paper.brushsize = brushsize.value = brushsize.valueAsNumber - (Math.sign(y) * 2)
+        }
+    })
+    undo.on({
+        click() {
+            paper.undo()
+        }
+    })
 </script>
 
 </html>
