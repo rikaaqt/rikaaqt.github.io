@@ -81,10 +81,16 @@ desc = 'page is about rika pika!!!'
     <meta property="og:audio"
         content="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1">
     <meta property="og:audio:type" content="audio/mp3">
+    <!--local-->
     <script src='https://addsoupbase.github.io/legacy.js' nomodule></script>
     <script src="https://addsoupbase.github.io/css.js" blocking="render"></script>
     <script src="https://addsoupbase.github.io/css_bad.js" nomodule></script>
     <noscript>
+        <style>
+            #entries {
+                display: none
+            }
+        </style>
         <link rel="stylesheet" href="https://addsoupbase.github.io/noscript.css">
     </noscript>
     <link rel="preload" as="font" crossorigin="anonymous" href="HVD Fonts  MikadoRegular.woff2" type="font/woff2"
@@ -235,17 +241,15 @@ desc = 'page is about rika pika!!!'
         <section class="box" id="entries">
             <h2>Diary!</h2>
             <article id="diary"></article>
-            <time id="time"></time>
-            <div id="controls2"><button id="prev" disabled>←</button><span id="statusText">0 of 0</span><button id="next"
-                    disabled>→</button></div>
+            <div id="thing">
+                <time id="time">Loading...</time>
+                <q id="titlething"></q>
+            </div>
+            <div id="controls2" role="group" aria-label="Pagination"><button id="next" disabled
+                    aria-label="Next Entry">←</button><span id="statusText" aria-live="polite" aria-atomic="true"
+                    role="status">0
+                    of 0</span><button id="prev" disabled aria-label="Previous Entry">→</button></div>
         </section>
-        <noscript>
-            <style>
-                #entries {
-                    display: none
-                }
-            </style>
-        </noscript>
         <footer class="box">
             <section>
                 <h2>Send me a message!</h2>
@@ -269,7 +273,8 @@ desc = 'page is about rika pika!!!'
             , st = d.getElementById('statusText')
             , prev = d.getElementById('prev')
             , next = d.getElementById('next'),
-            time = d.getElementById('time')
+            time = d.getElementById('time'),
+            title = d.getElementById('titlething')
         function toggle() {
             m.dataset.pressed = String(!m.paused)
         }
@@ -300,23 +305,26 @@ desc = 'page is about rika pika!!!'
         var entries = null
         var shadow = null
         var lastTime
+        function toggleButtons() {
+            next.toggleAttribute('disabled', !entries[index + 1])
+            prev.toggleAttribute('disabled', !entries[index - 1])
+        }
         function updateStatus() {
-            st.textContent = (index + 1) + ' of ' + length
+            st.textContent = (length-index) + ' of ' + length
             var t = entries[index]
             time.setAttribute('datetime', lastTime.toISOString().slice(0, 10))
-            time.textContent = lastTime.toDateString()
+            time.textContent = lastTime.toLocaleDateString() + ' ' + lastTime.toLocaleTimeString()
+            toggleButtons()
+            title.textContent = t.name
+            di.ariaPosInSet = index + 1
         }
         next.addEventListener('click', function () {
             index += 1
-            if (!entries[index + 1]) this.toggleAttribute('disabled', true)
-            if (entries[index - 1]) prev.toggleAttribute('disabled', false)
-            updateStatus()
+            putEntry()
         })
         prev.addEventListener('click', function () {
             index -= 1
-            if (!entries[index - 1]) this.toggleAttribute('disabled', true)
-            if (entries[index + 1]) next.toggleAttribute('disabled', false)
-            updateStatus()
+            putEntry()
         })
         function doDiaryStuffs() {
             shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
