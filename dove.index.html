@@ -254,7 +254,8 @@ desc = 'page is about rika pika!!!'
         </section>
         <section class="box">
             <h2>Draw me something!</h2>
-            <form method="POST" action="https://drawing-submissions.deno.dev?user=rika" enctype="multipart/form-data" id="paperform">
+            <form method="POST" action="https://drawing-submissions.deno.dev?user=rika"
+                enctype="multipart/form-data" id="paperform">
                 <div style="padding-right:16px">
                     <input type="range" value="1" min="1" max="60" step=".1" id="brushsize" aria-label="Brush Size">
                     <paper-canvas name="drawing" type="file" required id="paper"></paper-canvas>
@@ -290,7 +291,14 @@ desc = 'page is about rika pika!!!'
 <script type="module" async>
     import "https://addsoupbase.github.io/webcomponents/paper-canvas.js"
     import * as v from 'https://addsoupbase.github.io/v4.js'
-    const { brushsize, colorpicker, color, undo, paper } = v.id
+    const { brushsize, colorpicker, color, undo, paper, paperform, sendmessage } = v.id
+    paperform.onsubmit = () => {
+        sessionStorage.setItem('d', paper.dataURL(1).slice(22))
+    }
+    sendmessage.onsubmit = function () {
+        let { name, message } = this.elements
+        sessionStorage.setItem('m', JSON.stringify([message.value, name.value]))
+    }
     brushsize.on({
         change() {
             paper.brushsize = this.valueAsNumber
@@ -315,6 +323,8 @@ desc = 'page is about rika pika!!!'
             paper.undo()
         }
     })
+    sessionStorage.removeItem('d')
+    sessionStorage.removeItem('m')
 </script>
 
 </html>

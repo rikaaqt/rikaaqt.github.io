@@ -86,11 +86,20 @@ desc = 'Thank you for sending a message!'
     <meta name="apple-mobile-web-app-title" content="<!--{{return title}}-->">
     <link rel="apple-touch-startup-image" href="favicon.ico">
     <title><!--{{return title}}--></title>
+    <style>
+        samp {
+            word-break: break-all;
+            margin: 10px
+        }
+        html {
+            scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-color)
+        }
+    </style>
 </head>
 
 <body>
     <div id="bg" aria-hidden="true"></div>
-    <main style="height:100%;place-content: center;">
+    <main style="place-content: center;">
         <section class="box">
             <h1>Thanks so much!</h1>
             <p style="font-size: 1.3em;">
@@ -100,6 +109,36 @@ desc = 'Thank you for sending a message!'
                 <source srcset="kiss.webp" type="image/webp"><img style="width:50vw;max-width:324px;height:auto"
                     src="kiss.gif" alt="Pompompurin KISSY KISS">
             </picture>
+            <script>
+                !function (d, m, D) {
+                    'use strict'
+                    var l = D.currentScript
+                    sessionStorage.removeItem('d')
+                    sessionStorage.removeItem('m')
+                    if (d) {
+                        var n = new Image
+                        n.src = 'data:image/png;base64,' + d
+                        n.width = n.height = 250
+                        n.alt = 'Your Drawing'
+                        var x = n.style
+                        x.justifySelf = 'center'
+                        x.margin = '15px'
+                        x.outline = '1px solid'
+                        D.querySelector('img').style.width = '100px'
+                        D.querySelector('p').after(n)
+                    }
+                    else if (m) {
+                        m = JSON.parse(m)
+                        var z = D.querySelector('h1')
+                        ;['Message', 'Name']
+                        .forEach(function(str, i) {
+                            var p = D.createElement('samp')
+                            p.textContent = str + ': ' + m[i]
+                            z.after(p)
+                        })
+                    }
+                }(sessionStorage.getItem('d'), sessionStorage.getItem('m'), document)
+            </script>
         </section>
     </main>
 </body>

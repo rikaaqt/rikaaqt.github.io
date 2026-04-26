@@ -1,103 +1,105 @@
 !function (d, css) {
-        'use strict'
-        d.getElementById('papercontrols')
-            .addEventListener('click', function (n) {
-                if (n.target.tagName === 'INPUT') {
-                    n.preventDefault()
-                }
-            }, true)
-        var di = d.getElementById('diary')
-            , m = d.querySelector('audio')
-            , c = d.getElementById('controls2')
-            , st = d.getElementById('statusText')
-            , prev = d.getElementById('prev')
-            , next = d.getElementById('next'),
-            time = d.getElementById('time'),
-            title = d.getElementById('titlething')
-        function toggle() {
-            m.dataset.pressed = String(!m.paused)
+    'use strict'
+    d.getElementById('papercontrols')
+        .addEventListener('click', function (n) {
+            if (n.target.tagName === 'INPUT') {
+                n.preventDefault()
+            }
+        }, true)
+    var di = d.getElementById('diary')
+        , m = d.querySelector('audio')
+        , c = d.getElementById('controls2')
+        , st = d.getElementById('statusText')
+        , prev = d.getElementById('prev')
+        , next = d.getElementById('next'),
+        time = d.getElementById('time'),
+        title = d.getElementById('titlething')
+    function toggle() {
+        m.dataset.pressed = String(!m.paused)
+    }
+    m.addEventListener('play', toggle)
+    m.addEventListener('pause', toggle)
+    var a = d.querySelector('.textbox')
+    a.onclick = function () {
+        m.paused ? m.play() : m.pause()
+    }
+    m.addEventListener('mouseover', function () {
+        var n = d.createElement('link')
+        n.rel = 'preconnect'
+        n.href = 'https://www.dropbox.com'
+        d.head.appendChild(n)
+    }, { once: true })
+    var share = { text: 'Check out my page!', url: location.href, /*:return `title: "${title}"`*/ }
+    if (navigator.canShare && navigator.canShare(share)) d.getElementById('wifibutton')
+        .onclick = function () {
+            navigator.share(share)
         }
-        m.addEventListener('play', toggle)
-        m.addEventListener('pause', toggle)
-        var a = d.querySelector('.textbox')
-        a.onclick = function () {
-            m.paused ? m.play() : m.pause()
+    var abt = d.getElementById('about').style
+    setTimeout(function () {
+        abt.willChange = ''
+    }, 1500)
+    abt.willChange = 'background-position'
+    var index = 0
+    var length = -1
+    var entries = null
+    var shadow = null
+    var lastTime
+    function toggleButtons() {
+        next.toggleAttribute('disabled', !entries[index + 1])
+        prev.toggleAttribute('disabled', !entries[index - 1])
+    }
+    var svt = d.startViewTransition ? d.startViewTransition.bind(d) : setTimeout.bind(window)
+    function updateStatus() {
+        st.textContent = (length - index) + ' of ' + length
+        var t = entries[index]
+        time.setAttribute('datetime', lastTime.toISOString().slice(0, 10))
+        time.textContent = lastTime.toLocaleDateString() + ' ' + lastTime.toLocaleTimeString()
+        toggleButtons()
+        title.textContent = t.name
+        di.ariaPosInSet = index + 1
+    }
+    next.addEventListener('click', function () {
+        index += 1
+        try {
+            di.setAttribute('data-VTDIR', 'f')
         }
-        m.addEventListener('mouseover', function () {
-            var n = d.createElement('link')
-            n.rel = 'preconnect'
-            n.href = 'https://www.dropbox.com'
-            d.head.appendChild(n)
-        }, { once: true })
-        var share = { text: 'Check out my page!', url: location.href, /*:return `title: "${title}"`*/ }
-        if (navigator.canShare && navigator.canShare(share)) d.getElementById('wifibutton')
-            .onclick = function () {
-                navigator.share(share)
-            }
-        var abt = d.getElementById('about').style
-        setTimeout(function () {
-            abt.willChange = ''
-        }, 1500)
-        abt.willChange = 'background-position'
-        var index = 0
-        var length = -1
-        var entries = null
-        var shadow = null
-        var lastTime
-        function toggleButtons() {
-            next.toggleAttribute('disabled', !entries[index + 1])
-            prev.toggleAttribute('disabled', !entries[index - 1])
+        catch (e) {
+            console.error(e)
         }
-        var svt = d.startViewTransition ? d.startViewTransition.bind(d) : setTimeout.bind(window)
-        function updateStatus() {
-            st.textContent = (length - index) + ' of ' + length
-            var t = entries[index]
-            time.setAttribute('datetime', lastTime.toISOString().slice(0, 10))
-            time.textContent = lastTime.toLocaleDateString() + ' ' + lastTime.toLocaleTimeString()
-            toggleButtons()
-            title.textContent = t.name
-            di.ariaPosInSet = index + 1
+        putEntry()
+    })
+    prev.addEventListener('click', function () {
+        index -= 1
+        di.setAttribute('data-VTDIR', 'r')
+        putEntry(true)
+    })
+    var frame
+    function doDiaryStuffs() {
+        try {
+            shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
         }
-        next.addEventListener('click', function () {
-            index += 1
-            try {
-                di.setAttribute('data-VTDIR', 'f')
-            }
-            catch (e) {
-                console.error(e)
-            }
-            putEntry()
-        })
-        prev.addEventListener('click', function () {
-            index -= 1
-            di.setAttribute('data-VTDIR', 'r')
-            putEntry(true)
-        })
-        var frame
-        function doDiaryStuffs() {
-            try {
-                shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
-            }
-            catch (e) {
-                if (e.name !== 'TypeError') throw e
-                frame = d.createElement('iframe')
-                di.appendChild(frame)
-            }
+        catch (e) {
+            if (e.name !== 'TypeError') throw e
+            frame = d.createElement('iframe')
+            di.appendChild(frame)
+        }
+        var xhr = new XMLHttpRequest
+        xhr.open("GET", 'https://doc-entries.addsoupbase1.workers.dev/docs', true)
+        xhr.responseType = 'json'
+        xhr.onload = function () {
+            entries = xhr.response
+            if (typeof entries === 'string') entries = (typeof JSON === 'object' ? JSON.parse : eval)((entries))
+            length = entries.length
+            putEntry(false)
+        }
+        xhr.send()
+    }
+    var url = 'https://doc-entries.addsoupbase1.workers.dev/doc?id='
+    function putEntry(prev) {
+        var s = url + entries[index].id
+        if (shadow) {
             var xhr = new XMLHttpRequest
-            xhr.open("GET", 'https://doc-entries.addsoupbase1.workers.dev/docs', true)
-            xhr.responseType = 'json'
-            xhr.onload = function () {
-                entries = xhr.response
-                if (typeof entries === 'string') entries = (typeof JSON === 'object' ?JSON.parse :eval)((entries))
-                length = entries.length
-                putEntry(false)
-            }
-            xhr.send()
-        }
-        var url = 'https://doc-entries.addsoupbase1.workers.dev/doc?id='
-        function putEntry(prev) {
-            var xhr = new XMLHttpRequest
-            xhr.open("GET", url + entries[index].id, true)
+            xhr.open("GET", s, true)
             // xhr.responseType = 'document'
             xhr.onload = function () {
                 var doc = new DOMParser().parseFromString(xhr.responseText, 'text/html')
@@ -121,36 +123,37 @@
                     doc.head.appendChild(pre)
                 }
                 function go() {
-                    if (shadow) {
-                        shadow.replaceChildren(doc.documentElement)
-                    }
-                    else frame.src = 'data:text/html,' + encodeURIComponent('<!DOCTYPE html>' + doc.documentElement.outerHTML.replace('<html', '<html lang="en"')
-                            .replace('<head>', '<head><meta http-equiv="content-language" content="en"><meta property="og:locale" content="en_US"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">'))
+                    shadow.replaceChildren(doc.documentElement)
                 }
                 prev === false ? go() : svt(go, 5)
                 updateStatus()
             }
             xhr.send()
         }
-        addEventListener('load', function () {
-            d.querySelector('header')
-                .oncontentvisibilityautostatechange = function (e) {
-                    if (e.skipped) {
-                        d.head.appendChild(d.createRange().createContextualFragment('<link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev"><link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json" crossorigin="anonymous">'))
-                        this.oncontentvisibilityautostatechange = null
-                        this.style.contentVisibility = ''
-                    }
+        else {
+            frame.src = s
+            updateStatus()
+        }
+    }
+    addEventListener('load', function () {
+        d.querySelector('header')
+            .oncontentvisibilityautostatechange = function (e) {
+                if (e.skipped) {
+                    d.head.appendChild(d.createRange().createContextualFragment('<link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev"><link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json" crossorigin="anonymous">'))
+                    this.oncontentvisibilityautostatechange = null
+                    this.style.contentVisibility = ''
                 }
-            if (typeof IntersectionObserver === 'function') {
-                var ie = new IntersectionObserver(function (n) {
-                    if (n[0].isIntersecting) {
-                        doDiaryStuffs()
-                        ie = ie.disconnect()
-                    }
-                })
-                ie.observe(di, { threshold: [0, Number.MIN_VALUE] })
             }
-            else doDiaryStuffs()
-        }, { once: true })
-    }(document, window[Symbol.for('[[CSSModule]]')])
+        if (typeof IntersectionObserver === 'function') {
+            var ie = new IntersectionObserver(function (n) {
+                if (n[0].isIntersecting) {
+                    doDiaryStuffs()
+                    ie = ie.disconnect()
+                }
+            })
+            ie.observe(di, { threshold: [0, Number.MIN_VALUE] })
+        }
+        else doDiaryStuffs()
+    }, { once: true })
+}(document, window[Symbol.for('[[CSSModule]]')])
 
