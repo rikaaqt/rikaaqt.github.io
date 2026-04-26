@@ -78,8 +78,7 @@ desc = 'page is about rika pika!!!'
     <meta name="apple-mobile-web-app-title" content="<!--{{return title}}-->">
     <link rel="apple-touch-startup-image" href="favicon.ico">
     <title><!--{{return title}}--></title>
-    <meta property="og:audio"
-        content="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1">
+    <meta property="og:audio" content="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1">
     <meta property="og:audio:type" content="audio/mp3">
     <!--local-->
     <script src='https://addsoupbase.github.io/legacy.js' nomodule></script>
@@ -96,8 +95,11 @@ desc = 'page is about rika pika!!!'
     <link rel="preload" as="font" crossorigin="anonymous" href="HVD Fonts  MikadoRegular.woff2" type="font/woff2"
         blocking="render">
     <!--{{return`roblox spotify tiktok instagram`.split(' ').map(o=>`<link rel="preload" as="image" type="image/svg+xml" href="${o}.svg">`).join('')}}-->
-    <!--{{return `<style>${await sheet('styles.css')}</style>`}}-->
+    <!--{{return`<style>${await sheet('styles.css')}</style>`}}-->
     <link rel="manifest" href="site.webmanifest" fetchpriority="low">
+    <link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev">
+    <link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json"
+        crossorigin="anonymous">
 </head>
 
 <body>
@@ -240,7 +242,7 @@ desc = 'page is about rika pika!!!'
         </section>
         <section class="box" id="entries">
             <h2>Diary!</h2>
-            <article id="diary"></article>
+            <article id="diary" data-vtdir="r"></article>
             <div id="thing">
                 <time id="time">Loading...</time>
                 <q id="titlething"></q>
@@ -309,8 +311,9 @@ desc = 'page is about rika pika!!!'
             next.toggleAttribute('disabled', !entries[index + 1])
             prev.toggleAttribute('disabled', !entries[index - 1])
         }
+        var svt = d.startViewTransition ? d.startViewTransition.bind(d) : setTimeout.bind(window)
         function updateStatus() {
-            st.textContent = (length-index) + ' of ' + length
+            st.textContent = (length - index) + ' of ' + length
             var t = entries[index]
             time.setAttribute('datetime', lastTime.toISOString().slice(0, 10))
             time.textContent = lastTime.toLocaleDateString() + ' ' + lastTime.toLocaleTimeString()
@@ -320,27 +323,43 @@ desc = 'page is about rika pika!!!'
         }
         next.addEventListener('click', function () {
             index += 1
+            try {
+                di.setAttribute('data-VTDIR', 'f')
+            }
+            catch (e) {
+                console.error(e)
+            }
             putEntry()
         })
         prev.addEventListener('click', function () {
             index -= 1
-            putEntry()
+            di.setAttribute('data-VTDIR', 'r')
+            putEntry(true)
         })
+        var frame
         function doDiaryStuffs() {
-            shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
+            try {
+                shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
+            }
+            catch (e) {
+                if (e.name !== 'TypeError') throw e
+                frame = d.createElement('iframe')
+                di.appendChild(frame)
+            }
             var xhr = new XMLHttpRequest
             xhr.open("GET", 'https://doc-entries.addsoupbase1.workers.dev/docs', true)
             xhr.responseType = 'json'
             xhr.onload = function () {
                 entries = xhr.response
                 length = entries.length
-                putEntry()
+                putEntry(true)
             }
             xhr.send()
         }
-        function putEntry() {
+        var url = 'https://doc-entries.addsoupbase1.workers.dev/doc?id='
+        function putEntry(prev) {
             var xhr = new XMLHttpRequest
-            xhr.open("GET", 'https://doc-entries.addsoupbase1.workers.dev/doc?id=' + entries[index].id, true)
+            xhr.open("GET", url + entries[index].id, true)
             xhr.responseType = 'document'
             xhr.onload = function () {
                 var doc = xhr.response
@@ -356,19 +375,37 @@ desc = 'page is about rika pika!!!'
                 style.minHeight = '90%'
                 style.fontSize = '.9em'
                 style.backgroundColor = 'transparent'
-                shadow.replaceChildren(doc.documentElement)
+                var p = entries[index + 1]
+                if (prev && p) {
+                    var pre = d.createElement('link')
+                    pre.rel = 'prefetch'
+                    pre.href = url + p.id
+                    doc.head.appendChild(pre)
+                }
+                svt(function () {
+                    if (shadow) {
+                        shadow.replaceChildren(doc.documentElement)
+                    }
+                    else {
+                        frame.srcdoc = '<!DOCTYPE html>' + doc.documentElement.outerHTML.replace('<html', '<html lang="en"')
+                        .replace('<head>', '<head>    <meta http-equiv="content-language" content="en"><meta property="og:locale" content="en_US"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">')
+                    }
+                }, 5)
                 updateStatus()
             }
             xhr.send()
         }
         addEventListener('load', function () {
-            var ie = new IntersectionObserver(function (n) {
-                if (n[0].isIntersecting) {
-                    doDiaryStuffs()
-                    ie = ie.disconnect()
-                }
-            })
-            ie.observe(di, { threshold: [0, Number.MIN_VALUE] })
+            if (typeof IntersectionObserver === 'function') {
+                var ie = new IntersectionObserver(function (n) {
+                    if (n[0].isIntersecting) {
+                        doDiaryStuffs()
+                        ie = ie.disconnect()
+                    }
+                })
+                ie.observe(di, { threshold: [0, Number.MIN_VALUE] })
+            }
+            else doDiaryStuffs()
         }, { once: true })
     }(document, window[Symbol.for('[[CSSModule]]')])
 </script>
