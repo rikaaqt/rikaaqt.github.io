@@ -124,10 +124,8 @@
                     if (shadow) {
                         shadow.replaceChildren(doc.documentElement)
                     }
-                    else {
-                        frame.srcdoc = '<!DOCTYPE html>' + doc.documentElement.outerHTML.replace('<html', '<html lang="en"')
-                            .replace('<head>', '<head><meta http-equiv="content-language" content="en"><meta property="og:locale" content="en_US"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">')
-                    }
+                    else frame.src = 'data:text/html,' + encodeURIComponent('<!DOCTYPE html>' + doc.documentElement.outerHTML.replace('<html', '<html lang="en"')
+                            .replace('<head>', '<head><meta http-equiv="content-language" content="en"><meta property="og:locale" content="en_US"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">'))
                 }
                 prev === false ? go() : svt(go, 5)
                 updateStatus()
