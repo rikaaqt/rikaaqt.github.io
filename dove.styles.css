@@ -131,7 +131,7 @@ footer {
     place-content: space-between;
     width: 100%;
 }
-
+header {overflow:hidden}
 * {
     --scrollbar-color: var(--_SAKURA_PINK);
     --scrollbar-thumb-color: var(--_PINK);
@@ -526,7 +526,7 @@ input[type="text"] {
     border-color: var(--_PINK)
 }
 input::placeholder {
-    color:black
+    color:rgba(117, 117, 117, 0.68)
 }
 p {
     margin-block: 3px

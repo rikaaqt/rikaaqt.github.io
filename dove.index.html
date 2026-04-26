@@ -90,7 +90,7 @@ desc = 'page is about rika pika!!!'
     </noscript>
     <link rel="preload" as="font" crossorigin="anonymous" href="HVD Fonts  MikadoRegular.woff2" type="font/woff2"
         blocking="render">
-        <!--{{return`roblox spotify tiktok instagram`.split(' ').map(o=>`<link rel="preload" as="image" type="image/svg+xml" href="${o}.svg">`).join('')}}-->
+    <!--{{return`roblox spotify tiktok instagram`.split(' ').map(o=>`<link rel="preload" as="image" type="image/svg+xml" href="${o}.svg">`).join('')}}-->
     <!--{{return `<style>${await sheet('styles.css')}</style>`}}-->
     <link rel="manifest" href="site.webmanifest" fetchpriority="low">
 </head>
@@ -98,21 +98,20 @@ desc = 'page is about rika pika!!!'
 <body>
     <div id="bg" aria-hidden="true"></div>
     <main>
-        <section class="box" style="display:flex;justify-content:space-between"><header><span id="webURL"
-                class="spaced"
-                style="text-decoration: underline;text-decoration-color: var(--_DARKER_PINK);outline-offset:-1px;white-space: nowrap;"
-                contenteditable="true" spellcheck="false" tabindex="-1">https://rikaaqt.github.io</span>
-            <script>!function(n){'use strict';function l(n){var z=n.data;z&&(/\n/.test(z)||this.textContent.length+z.length>25)&&(n.returnValue=!!(n.preventDefault&&n.preventDefault()))}n.addEventListener('textInput',l);n.addEventListener('input',l);try{n.contentEditable='plaintext-only'}catch(e){}}(document.getElementById('webURL'))</script>
-            <div role="navigation" style="letter-spacing: 5px;padding-right:6px" id="controls"><a style="display:contents"
-                    aria-label="Go to message form" href="#namefield"><input alt="📧" type="image" aria-hidden="true"
-                        id="mailbutton"
-                        src="<!--{{return esc`${await dataURI('mail.svg')}`}}-->"></a><input
-                    type="image" aria-label="Share"
-                    src="<!--{{return esc`${await dataURI('share.svg')}`}}-->"
-                    id="wifibutton" alt="🛜"><a style="display: inline;" href="#aboutme" aria-label="Jump to about me"><input
-                        type="image"
-                        src="<!--{{return esc`${await dataURI('home.svg')}`}}-->"
-                        id="homebutton" alt="🏠" aria-hidden="true" tabindex="-1"></a></div></header>
+        <section class="box" style="display:flex;justify-content:space-between">
+            <header><span id="webURL" class="spaced"
+                    style="text-decoration: underline;text-decoration-color: var(--_DARKER_PINK);outline-offset:-1px;white-space: nowrap;"
+                    contenteditable="true" spellcheck="false" tabindex="-1">https://rikaaqt.github.io</span>
+                <script>!function (n) { 'use strict'; function l(n) { var z = n.data; z && (/\n/.test(z) || this.textContent.length + z.length > 25) && (n.returnValue = !!(n.preventDefault && n.preventDefault())) } n.addEventListener('textInput', l); n.addEventListener('input', l); try { n.contentEditable = 'plaintext-only' } catch (e) { } }(document.getElementById('webURL'))</script>
+                <div role="navigation" style="letter-spacing: 5px;padding-right:6px" id="controls"><a
+                        style="display:contents" aria-label="Go to message form" href="#namefield"><input alt="📧"
+                            type="image" aria-hidden="true" id="mailbutton"
+                            src="<!--{{return esc`${await dataURI('mail.svg')}`}}-->"></a><input type="image"
+                        aria-label="Share" src="<!--{{return esc`${await dataURI('share.svg')}`}}-->" id="wifibutton"
+                        alt="🛜"><a style="display: inline;" href="#aboutme" aria-label="Jump to about me"><input
+                            type="image" src="<!--{{return esc`${await dataURI('home.svg')}`}}-->" id="homebutton"
+                            alt="🏠" aria-hidden="true" tabindex="-1"></a></div>
+            </header>
         </section>
         <section class="box" id="about">
             <div>
@@ -148,13 +147,13 @@ desc = 'page is about rika pika!!!'
                     <source
                         src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
                         type="audio/mp3">
-                        <source
+                    <source
                         src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
                         type="audio/mp4">
-                        <source
+                    <source
                         src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
                         type="audio/m4a">
-                        <source
+                    <source
                         src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
                         type="audio/mpeg">
                     <!-- <source
@@ -169,9 +168,9 @@ desc = 'page is about rika pika!!!'
                         <source src="https://www.dropbox.com/scl/fi/2fzcjwhbk2yy5iiyx22ze/NOBLE.ogg?rlkey=3jsgqg4vyidm5mt7cpt0zy23z&st=czrblbf9&dl=0&raw=1"
                         type="audio/ogg"> -->
                 </audio>
-                <div class="textbox">
-                    <marquee scrollamount="3"><label for="audio">Click to play <cite
-                                style="cursor:pointer;">the cat from ipanema</cite> by j1gggs!</label></marquee>
+                <div class="textbox" tabindex="0" role="button">
+                    <marquee scrollamount="3"><label for="audio">Click to play <cite style="cursor:pointer;">the cat
+                                from ipanema</cite> by j1gggs!</label></marquee>
                 </div>
             </div>
         </section>
