@@ -81,7 +81,7 @@ desc = 'page is about rika pika!!!'
     <meta property="og:audio"
         content="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1">
     <meta property="og:audio:type" content="audio/mp3">
-    <script>(origin === 'http://localhost:3000' || origin === 'http://192.168.1.221:3000') && navigator.serviceWorker.register('../../local.js', { scope: './' })</script>
+    <!--local-->
     <script src='https://addsoupbase.github.io/legacy.js' nomodule></script>
     <script src="https://addsoupbase.github.io/css.js" blocking="render"></script>
     <script src="https://addsoupbase.github.io/css_bad.js" nomodule></script>
@@ -233,8 +233,22 @@ desc = 'page is about rika pika!!!'
                     src="emoji/suprised.gif" class="emoji" alt="suprised" style="width:40px;height:40px">
             </p>
         </section>
-        <footer>
-            <section class="box">
+        <section class="box" id="entries">
+            <h2>Diary!</h2>
+            <article id="diary"></article>
+            <time id="time"></time>
+            <div id="controls"><button id="prev" disabled>←</button><span id="statusText">0 of 0</span><button id="next"
+                    disabled>→</button></div>
+        </section>
+        <noscript>
+            <style>
+                #entries {
+                    display: none
+                }
+            </style>
+        </noscript>
+        <footer class="box">
+            <section>
                 <h2>Send me a message!</h2>
                 <form id="sendmessage" method="POST" action="https://drawing-submissions.deno.dev?user=rika">
                     <input type="text" id="namefield" name="name" placeholder="Name" enterkeyhint="next"
@@ -248,9 +262,15 @@ desc = 'page is about rika pika!!!'
 </body>
 <script src="https://addsoupbase.github.io/aria.js" async></script>
 <script>
-    !function (d) {
+    !function (d, css) {
         'use strict'
-        var m = d.querySelector('audio')
+        var di = d.getElementById('diary')
+            , m = d.querySelector('audio')
+            , c = d.getElementById('controls')
+            , st = d.getElementById('statusText')
+            , prev = d.getElementById('prev')
+            , next = d.getElementById('next'),
+            time = d.getElementById('time')
         function toggle() {
             m.dataset.pressed = String(!m.paused)
         }
@@ -276,7 +296,74 @@ desc = 'page is about rika pika!!!'
             abt.willChange = ''
         }, 1500)
         abt.willChange = 'background-position'
-    }(document)
+        var index = 0
+        var length = -1
+        var entries = null
+        var shadow = null
+        var lastTime
+        function updateStatus() {
+            st.textContent = (index + 1) + ' of ' + length
+            var t = entries[index]
+            time.setAttribute('datetime', lastTime.toISOString().slice(0, 10))
+            time.textContent = lastTime.toDateString()
+        }
+        next.addEventListener('click', function () {
+            index += 1
+            if (!entries[index + 1]) this.toggleAttribute('disabled', true)
+            if (entries[index - 1]) prev.toggleAttribute('disabled', false)
+            updateStatus()
+        })
+        prev.addEventListener('click', function () {
+            index -= 1
+            if (!entries[index - 1]) this.toggleAttribute('disabled', true)
+            if (entries[index + 1]) next.toggleAttribute('disabled', false)
+            updateStatus()
+        })
+        function doDiaryStuffs() {
+            shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
+            var xhr = new XMLHttpRequest
+            xhr.open("GET", 'https://doc-entries.addsoupbase1.workers.dev/docs', true)
+            xhr.responseType = 'json'
+            xhr.onload = function () {
+                entries = xhr.response
+                length = entries.length
+                putEntry()
+            }
+            xhr.send()
+        }
+        function putEntry() {
+            var xhr = new XMLHttpRequest
+            xhr.open("GET", 'https://doc-entries.addsoupbase1.workers.dev/doc?id=' + entries[index].id, true)
+            xhr.responseType = 'document'
+            xhr.onload = function () {
+                var doc = xhr.response
+                lastTime = new Date(xhr.getResponseHeader('Last-Modified'))
+                // var style = doc.head.querySelector('style')
+                // style.textContent = '@scope {' + style.textContent + '}'
+                // di.replaceChildren.apply(di, doc.body.childNodes)
+                // di.appendChild(style)
+                var style = doc.body.style
+                style.padding = '10px'
+                style.paddingInline = '20px'
+                doc.documentElement.style.height = '97%'
+                style.minHeight = '90%'
+                style.fontSize = '.9em'
+                style.backgroundColor = 'transparent'
+                shadow.replaceChildren(doc.documentElement)
+                updateStatus()
+            }
+            xhr.send()
+        }
+        addEventListener('load', function () {
+            var ie = new IntersectionObserver(function (n) {
+                if (n[0].isIntersecting) {
+                    doDiaryStuffs()
+                    ie = ie.disconnect()
+                }
+            })
+            ie.observe(di, { threshold: [0, Number.MIN_VALUE] })
+        }, { once: true })
+    }(document, window[Symbol.for('[[CSSModule]]')])
 </script>
 
 </html>
