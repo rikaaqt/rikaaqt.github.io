@@ -53,30 +53,30 @@ desc = 'page is about rika pika!!!'
     <meta name="thumbnail" content="https://rikaaqt.github.io/pic.webp">
     <meta property="profile:username" content="rikaaqt">
     <!--summary_large_image,summary,app,or player -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" fetchpriority="low">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico" fetchpriority="low">
     <meta name="robots" content="index">
     <meta name="theme-color" content="#FAF9F6">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="author" content="addsoupbase">
     <link rel="canonical" href="https://rikaaqt.github.io">
     <!-- <script type="application/ld+json">{"@context":"https://schema.org","@type": "WebSite","name":"addsoupbase","url":"https://rikaaqt.github.io","description":"{{return desc}}","author":{"@type": "Person","name":"addsoupbase","sameAs":["https://twitter.com/addsoupbase"]},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rikaaqt.github.io"},"image":{"@type":"ImageObject","url":"https://rikaaqt.github.io/pic.webp","width":564,"height":560}}</script> -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./apple-touch-icon-57x57.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="60x60" href="./apple-touch-icon-60x60.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="72x72" href="./apple-touch-icon-72x72.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon-76x76.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="114x114" href="./apple-touch-icon-114x114.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="120x120" href="./apple-touch-icon-120x120.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="144x144" href="./apple-touch-icon-144x144.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="152x152" href="./apple-touch-icon-152x152.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-180x180.png" fetchpriority="low">
     <meta name="mobile-web-app-capable" content="no">
     <meta name="apple-mobile-web-app-capable" content="no">
     <meta name="apple-mobile-web-app-title" content="<!--{{return title}}-->">
-    <link rel="apple-touch-startup-image" href="favicon.ico">
+    <link rel="apple-touch-startup-image" href="favicon.ico" fetchpriority="low">
     <title><!--{{return title}}--></title>
     <meta property="og:audio"
         content="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1">
@@ -97,7 +97,7 @@ desc = 'page is about rika pika!!!'
         blocking="render">
     <!--{{return`roblox spotify tiktok instagram`.split(' ').map(o=>`<link rel="preload" as="image" type="image/svg+xml" href="${o}.svg">`).join('')}}-->
     <!--{{return`<style>${await sheet('styles.css')}</style>`}}-->
-    <link rel="manifest" href="site.webmanifest" fetchpriority="low">
+    <link rel="manifest" href="site.webmanifest" fetchpriority="low" async>
     <link rel="modulepreload" href="https://addsoupbase.github.io/webcomponents/paper-canvas.js"
         crossorigin="anonymous">
 </head>
@@ -148,7 +148,7 @@ desc = 'page is about rika pika!!!'
                 <picture>
                     <source srcset="bunny.avif" type="image/avif">
                     <source srcset="bunny.webp" type="image/webp">
-                    <img id="bunny" class="img" src="bunny.jpg" alt="Bunny">
+                    <img id="bunny" class="img" src="bunny.jpg" alt="Bunny" fetchpriority="low">
                 </picture>
                 <audio controls preload="none" id="audio" data-pressed="false">
                     <source
@@ -182,19 +182,19 @@ desc = 'page is about rika pika!!!'
             </div>
         </section>
         <section class="box" id="abt">
-            <h2 id="aboutme">About Me!<img src="emoji/cute.gif" alt class="emoji"
-                    style="width:30px;height:30px;vertical-align: sub;image-rendering: pixelated;display: block;margin-bottom:-30px;margin-top:-7px">
+            <h2 id="aboutme">About Me!<img fetchpriority="low" src="emoji/cute.gif" alt class="emoji"
+                    style="filter:brightness(.95);margin:auto;width:30px;height:30px;vertical-align: sub;image-rendering: pixelated;display: block;margin-bottom:-30px;margin-top:-7px">
             </h2>
             <ul><!--{{return[`Name: rika! (can call me rika pika)`,
              `Age: 16`,
              `Birthday: <time datetime="02-18">February 18!</time>`,
-             `My favorite color is baby pink<picture><source srcset="./emoji/bunnylove.webp" type="image/webp"><img alt="bunny love" class="emoji" src="emoji/bunnylove.png"></picture>`
+             `My favorite color is baby pink<picture><source srcset="./emoji/bunnylove.webp" type="image/webp"><img fetchpriority="low" alt="bunny love" class="emoji" src="emoji/bunnylove.png"></picture>`
              ].map(o=>`<li>${o}</li>`).join('')}}--></ul>
             <h3>My Hobbies!</h3>
             <p>I love running around my yard, I love playing Roblox, doing my hair, talking to
                 my amazing
                 friends, calling my family, I also really really love to read books about romance! <picture>
-                    <source srcset="emoji/wow.webp" type="image/webp"><img style="width:40px;height:40px"
+                    <source srcset="emoji/wow.webp" type="image/webp"><img fetchpriority="low" style="width:40px;height:40px"
                         alt="Exclamation" loading="lazy" class="emoji" src="emoji/wow.png">
                 </picture>
             </p>
@@ -207,7 +207,7 @@ desc = 'page is about rika pika!!!'
                 <li>Roaches</li>
                 <li>Worms</li>
                 <li>mean&nbsp;people!<picture style="display: block;">
-                        <source srcset="./emoji/grumpy.webp" type="image/webp"><img style="width:40px;height:40px"
+                        <source srcset="./emoji/grumpy.webp" type="image/webp"><img fetchpriority="low" style="width:40px;height:40px"
                             loading="lazy" src="emoji/grumpy.png" alt="grumpy" class="emoji">
                     </picture>
                 </li>
@@ -215,20 +215,20 @@ desc = 'page is about rika pika!!!'
             <h3>EXTRA</h3>
             <p>I love love love love love love love love lovers pink! And all shades of pink, I’m into anime but not as
                 much! <picture>
-                    <source srcset="emoji/blush.webp" type="image/webp"><img style="width:40px;height:40px"
+                    <source srcset="emoji/blush.webp" type="image/webp"><img fetchpriority="low" style="width:40px;height:40px"
                         loading="lazy" src="emoji/blush.png" alt="blush" class="emoji">
                 </picture>
             </p>
             <h4 style="margin-bottom: 0;"><strong>MY FAVOIRTE SANRIO CHARACTER IS POMPOMPURIN</strong></h4>
             <picture>
                 <source srcset="pompom.webp" type="image/webp">
-                <img loading="lazy" style="width:50%;max-width:200px;height:auto" src="pompom.gif"
+                <img fetchpriority="low" loading="lazy" style="width:50%;max-width:200px;height:auto" src="pompom.gif"
                     alt="Pompompurin drinking boba tea (i think)">
             </picture>
             <h4>And a little extra where I got my name from</h4>
             <p>MY NAME ORIGINALLY AND WAS RIKA, BUT I USE RIKA PIKA COS THATS WHAT MY FRIEND GAVE ME AS A LITTLE
                 NICKNAME SO IVE JUST BEEN USING IT EVER SINCEE <picture>
-                    <source srcset="emoji/excited.webp" type="image/webp"><img loading="lazy" class="emoji"
+                    <source srcset="emoji/excited.webp" type="image/webp"><img fetchpriority="low" loading="lazy" class="emoji"
                         style="width:40px;height:40px" src="emoji/excited.png" alt="excited">
                 </picture>
             </p>
@@ -236,7 +236,7 @@ desc = 'page is about rika pika!!!'
             <p>I got my name <q>rika</q> from a character named <q>Rikka Takanashi</q></p>
             <p>About her?
                 She's silly and extremely imaginative SHES DRAMATIC AND HAS A BUNCH OF ENERGY and mostly she loves doing
-                what she loves the most! And that's why I wanna be just like her <img loading="lazy"
+                what she loves the most! And that's why I wanna be just like her <img fetchpriority="low" loading="lazy"
                     src="emoji/suprised.gif" class="emoji" alt="suprised" style="width:40px;height:40px">
             </p>
         </section>
@@ -252,11 +252,11 @@ desc = 'page is about rika pika!!!'
                     role="status">0
                     of 0</span><button id="prev" disabled aria-label="Previous Entry">→</button></div>
         </section>
-        <section class="box">
+        <section class="box" id="drawmesomething">
             <h2>Draw me something!</h2>
-            <form method="POST" action="https://drawing-submissions.deno.dev?user=rika"
-                enctype="multipart/form-data" id="paperform">
-                <div style="padding-right:16px">
+            <form method="POST" action="https://drawing-submissions.deno.dev?user=rika" enctype="multipart/form-data"
+                id="paperform">
+                <div id="hi">
                     <input type="range" value="1" min="1" max="60" step=".1" id="brushsize" aria-label="Brush Size">
                     <paper-canvas name="drawing" type="file" required id="paper"></paper-canvas>
                 </div>
@@ -288,43 +288,5 @@ desc = 'page is about rika pika!!!'
 </body>
 <script src="https://addsoupbase.github.io/aria.js" async></script>
 <script><!--{{return await file('xhr.js')}}--></script>
-<script type="module" async>
-    import "https://addsoupbase.github.io/webcomponents/paper-canvas.js"
-    import * as v from 'https://addsoupbase.github.io/v4.js'
-    const { brushsize, colorpicker, color, undo, paper, paperform, sendmessage } = v.id
-    paperform.onsubmit = () => {
-        sessionStorage.setItem('d', paper.dataURL(1).slice(22))
-    }
-    sendmessage.onsubmit = function () {
-        let { name, message } = this.elements
-        sessionStorage.setItem('m', JSON.stringify([message.value, name.value]))
-    }
-    brushsize.on({
-        change() {
-            paper.brushsize = this.valueAsNumber
-        }
-    })
-    colorpicker.on({
-        click: color.click.bind(color)
-    })
-    color.on({
-        input() {
-            let c = this.value
-            paper.color = brushsize.style.accentColor = c
-        }
-    })
-    paper.on({
-        $wheel({ deltaY: y }) {
-            paper.brushsize = brushsize.value = brushsize.valueAsNumber - (Math.sign(y) * 2)
-        }
-    })
-    undo.on({
-        click() {
-            paper.undo()
-        }
-    })
-    sessionStorage.removeItem('d')
-    sessionStorage.removeItem('m')
-</script>
-
+<script type="module" data-loading="lazy" src="setup.js"></script>
 </html>

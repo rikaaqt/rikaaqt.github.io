@@ -247,7 +247,8 @@ button[disabled] {
     max-width: 300px;
     display: flex;
     place-content: space-around;
-    margin: 10px
+    margin: auto;
+    margin-block: 10px;
 }
 
 #entries {
@@ -355,10 +356,36 @@ picture {
     white-space: break-spaces;
 }
 
+paper-canvas::before {
+    animation: load .6s ease-in-out alternate infinite
+}
+
+@keyframes load {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: .7
+    }
+}
+
+paper-canvas:not(:defined)::before {
+    content: "Loading...";
+}
+
+#paperform:has(paper-canvas:not(:defined)) :where(input, button) {
+    display: none
+}
+
+#hi:has(paper-canvas:not(:defined)) {
+    padding-right: 0
+}
+
 iframe {
     width: 100%;
-    height: 100%;
-    border: none
+    height: 400px;
+    border: none;
 }
 
 .box:first-child {
@@ -584,6 +611,7 @@ marquee {
 }
 
 audio {
+    contain: paint;
     width: 90%;
     animation: rainbow 4s linear infinite;
     animation-play-state: paused;
@@ -591,7 +619,7 @@ audio {
     background-color: var(--_SAKURA_PINK);
     border-radius: 10px;
     corner-shape: scoop;
-    outline: 2px solid var(--_PINK)
+    border: 2px solid var(--_PINK)
 }
 
 audio::-webkit-time-remaining-display,
@@ -653,6 +681,7 @@ button {
     width: 85%;
     max-width: 500px;
     display: flex;
+    margin: auto;
 }
 
 #thing * {
@@ -695,18 +724,21 @@ p {
 :heading {
     margin-block: 10px
 }
+
 #paperform {
-    width:max-content;
+    width: max-content;
     place-self: center;
 }
+
 #papercontrols {
     display: flex;
-    gap:20px;
+    gap: 20px;
     place-content: center;
 }
+
 #papercontrols>input {
     width: 40px;
-    --user-select:none;
+    --user-select: none;
     height: auto;
     transition: transform .3s ease, filter .3s ease-in-out;
 }
@@ -725,12 +757,19 @@ input[type="range"] {
 
 #papercontrols>input:hover {
     transform: scale(1.05);
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.416))
+    /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.416)) */
 }
-#papercontrols >input:active {
-        transform: scale(.98);
 
+@supports not selector(:defined) {
+    #drawmesomething {
+        display: none
+    }
 }
+
+#papercontrols>input:active {
+    transform: scale(.98);
+}
+
 /* input[type="range"]:hover:not(:active) {
     filter: brightness(90%)
 } */

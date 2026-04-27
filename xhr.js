@@ -1,4 +1,4 @@
-!function (d, css) {
+!function (d, ss) {
     'use strict'
     d.getElementById('papercontrols')
         .addEventListener('click', function (n) {
@@ -40,10 +40,10 @@
     }, 1500)
     abt.willChange = 'background-position'
     var index = 0
-    var length = -1
-    var entries = null
-    var shadow = null
-    var lastTime
+    , length = -1
+    , entries = null
+    , shadow = null
+    , lastTime
     function toggleButtons() {
         next.toggleAttribute('disabled', !entries[index + 1])
         prev.toggleAttribute('disabled', !entries[index - 1])
@@ -81,6 +81,7 @@
         catch (e) {
             if (e.name !== 'TypeError') throw e
             frame = d.createElement('iframe')
+            di.style.overflow = 'hidden'
             di.appendChild(frame)
         }
         var xhr = new XMLHttpRequest
@@ -97,43 +98,48 @@
     var url = 'https://doc-entries.addsoupbase1.workers.dev/doc?id='
     function putEntry(prev) {
         var s = url + entries[index].id
-        if (shadow) {
-            var xhr = new XMLHttpRequest
-            xhr.open("GET", s, true)
-            // xhr.responseType = 'document'
-            xhr.onload = function () {
-                var doc = new DOMParser().parseFromString(xhr.responseText, 'text/html')
-                lastTime = new Date(xhr.getResponseHeader('Last-Modified'))
-                // var style = doc.head.querySelector('style')
-                // style.textContent = '@scope {' + style.textContent + '}'
-                // di.replaceChildren.apply(di, doc.body.childNodes)
-                // di.appendChild(style)
-                var style = doc.body.style
-                style.padding = '10px'
-                style.paddingInline = '20px'
-                doc.documentElement.style.height = '97%'
-                style.minHeight = '90%'
-                style.fontSize = '.9em'
-                style.backgroundColor = 'transparent'
-                var p = entries[index + 1]
-                if (prev === 2 && p) {
-                    var pre = d.createElement('link')
-                    pre.rel = 'prefetch'
-                    pre.href = url + p.id
-                    doc.head.appendChild(pre)
-                }
-                function go() {
+        // if (shadow) {
+        var xhr = new XMLHttpRequest
+        xhr.open("GET", s, true)
+        // xhr.responseType = 'document'
+        xhr.onload = function () {
+            var doc = new DOMParser().parseFromString(xhr.responseText, 'text/html')
+            lastTime = new Date(xhr.getResponseHeader('Last-Modified'))
+            // var style = doc.head.querySelector('style')
+            // style.textContent = '@scope {' + style.textContent + '}'
+            // di.replaceChildren.apply(di, doc.body.childNodes)
+            // di.appendChild(style)
+            var style = doc.body.style
+            style.padding = '10px'
+            style.paddingInline = '20px'
+            doc.documentElement.style.height = '97%'
+            style.minHeight = '90%'
+            style.fontSize = '.9em'
+            style.backgroundColor = 'transparent'
+            var p = entries[index + 1]
+            if (prev === 2 && p) {
+                var pre = d.createElement('link')
+                pre.rel = 'prefetch'
+                pre.href = url + p.id
+                doc.head.appendChild(pre)
+            }
+            if (shadow) {
+                var go = function () {
                     shadow.replaceChildren(doc.documentElement)
                 }
                 prev === false ? go() : svt(go, 5)
-                updateStatus()
             }
-            xhr.send()
-        }
-        else {
-            frame.src = s
+            else {
+                frame.src = s
+            }
             updateStatus()
         }
+        xhr.send()
+        // }
+        // else {
+        //     frame.src = s
+        //     updateStatus()
+        // }
     }
     addEventListener('load', function () {
         d.querySelector('header')
@@ -155,5 +161,12 @@
         }
         else doDiaryStuffs()
     }, { once: true })
-}(document, window[Symbol.for('[[CSSModule]]')])
+    ss.removeItem('m')
+    d.getElementById('sendmessage').onsubmit = function () {
+        var e = this.elements,
+            name = e.name,
+            message = e.message
+        ss.setItem('m', JSON.stringify([message.value, name.value]))
+    }
+}(document, sessionStorage)
 

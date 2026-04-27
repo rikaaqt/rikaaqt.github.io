@@ -11,7 +11,7 @@ desc = 'Thank you for sending a message!'
     <link rel="preload" as="font" crossorigin="anonymous" href="HVD Fonts  MikadoRegular.woff2" type="font/woff2"
         blocking="render">
     <!--{{return `<style>${await sheet('styles.css')}</style>`}}-->
-    <script>(origin === 'http://localhost:3000' || origin === 'http://192.168.1.221:3000') && navigator.serviceWorker.register('../../local.js', { scope: './' })</script>
+    <!--local-->
     <!-- <script src='https://addsoupbase.github.io/legacy.js' nomodule></script> -->
     <!-- <script src="https://addsoupbase.github.io/css.js" blocking="render"></script> -->
     <!-- <script src="https://addsoupbase.github.io/css_bad.js" nomodule></script> -->
@@ -47,11 +47,11 @@ desc = 'Thank you for sending a message!'
     <meta name="twitter:image:height" content="560">
     <meta name="msapplication-navbutton-color" content="#FAF9F6">
     <meta name="msapplication-TileColor" content="#FAF9F6">
-    <meta name="msapplication-square150x150logo" content="./apple-touch-icon-152x152.png">
-    <meta name="msapplication-square310x310logo" content="./apple-touch-icon-180x180.png">
-    <meta name="msapplication-square70x70logo" content="./apple-touch-icon-72x72.png">
-    <meta name="msapplication-wide310x150logo" content="./apple-touch-icon-180x180.png">
-    <meta name="msapplication-TileImage" content="./apple-touch-icon-180x180.png">
+    <meta name="msapplication-square150x150logo" content="./apple-touch-icon-152x152.png" fetchpriority="low">
+    <meta name="msapplication-square310x310logo" content="./apple-touch-icon-180x180.png" fetchpriority="low">
+    <meta name="msapplication-square70x70logo" content="./apple-touch-icon-72x72.png" fetchpriority="low">
+    <meta name="msapplication-wide310x150logo" content="./apple-touch-icon-180x180.png" fetchpriority="low">
+    <meta name="msapplication-TileImage" content="./apple-touch-icon-180x180.png" fetchpriority="low">
     <meta name="msapplication-starturl" content="https://rikaaqt.github.io">
     <meta name="origin" content="https://rikaaqt.github.io">
     <meta name="msapplication-tooltip" content="<!--{{return title}}-->">
@@ -60,31 +60,31 @@ desc = 'Thank you for sending a message!'
     <meta name="thumbnail" content="https://rikaaqt.github.io/kiss.gif">
     <meta property="profile:username" content="rikaaqt">
     <!--summary_large_image,summary,app,or player -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" fetchpriority="low">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest" fetchpriority="low">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico" fetchpriority="low">
     <meta name="robots" content="index">
     <meta name="theme-color" content="#FAF9F6">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="author" content="addsoupbase">
     <link rel="canonical" href="https://rikaaqt.github.io">
     <!-- <script type="application/ld+json">{"@context":"https://schema.org","@type": "WebSite","name":"addsoupbase","url":"https://rikaaqt.github.io","description":"{{return desc}}","author":{"@type": "Person","name":"addsoupbase","sameAs":["https://twitter.com/addsoupbase"]},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rikaaqt.github.io"},"image":{"@type":"ImageObject","url":"https://rikaaqt.github.io/kiss.gif","width":564,"height":560}}</script> -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./apple-touch-icon-57x57.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="60x60" href="./apple-touch-icon-60x60.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="72x72" href="./apple-touch-icon-72x72.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="76x76" href="./apple-touch-icon-76x76.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="114x114" href="./apple-touch-icon-114x114.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="120x120" href="./apple-touch-icon-120x120.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="144x144" href="./apple-touch-icon-144x144.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="152x152" href="./apple-touch-icon-152x152.png" fetchpriority="low">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-180x180.png" fetchpriority="low">
     <meta name="mobile-web-app-capable" content="no">
     <meta name="apple-mobile-web-app-capable" content="no">
     <meta name="apple-mobile-web-app-title" content="<!--{{return title}}-->">
-    <link rel="apple-touch-startup-image" href="favicon.ico">
+    <link rel="apple-touch-startup-image" href="favicon.ico" fetchpriority="low">
     <title><!--{{return title}}--></title>
     <style>
         samp {
@@ -129,12 +129,12 @@ desc = 'Thank you for sending a message!'
                     }
                     else if (m) {
                         m = JSON.parse(m)
-                        var z = D.querySelector('h1')
+                        var z = D.querySelector('h1').parentElement
                         ;['Message', 'Name']
                         .forEach(function(str, i) {
                             var p = D.createElement('samp')
                             p.textContent = str + ': ' + m[i]
-                            z.after(p)
+                            z.appendChild(p)
                         })
                     }
                 }(sessionStorage.getItem('d'), sessionStorage.getItem('m'), document)
