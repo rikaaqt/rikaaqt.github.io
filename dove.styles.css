@@ -243,6 +243,7 @@ button[disabled] {
 #controls2 {
     /* gap: 60px; */
     width: 60%;
+    place-items:center;
     place-self: center;
     max-width: 300px;
     display: flex;
@@ -250,7 +251,12 @@ button[disabled] {
     margin: auto;
     margin-block: 10px;
 }
-
+#controls2 button {
+    border-radius: 100%;
+    font-size:1.1em;
+    width:40px;
+    height:40px;
+}
 #entries {
     overflow: hidden;
     overflow: clip;
@@ -328,7 +334,8 @@ form {
 
 #diary {
     transition: scrollbar-color .5s ease;
-
+    outline: 2px dashed var(--_PINK);
+    outline-offset: 2px;
     border: 2px solid var(--_DARKER_PINK);
     background-color: var(--_DARK_PINK);
     width: 90%;
@@ -688,7 +695,6 @@ button {
     color: black;
     text-shadow: none !important;
 }
-
 button:active {
     transform: scale(.93)
 }

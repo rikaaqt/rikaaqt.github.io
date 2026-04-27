@@ -40,10 +40,10 @@
     }, 1500)
     abt.willChange = 'background-position'
     var index = 0
-    , length = -1
-    , entries = null
-    , shadow = null
-    , lastTime
+        , length = -1
+        , entries = null
+        , shadow = null
+        , lastTime
     function toggleButtons() {
         next.toggleAttribute('disabled', !entries[index + 1])
         prev.toggleAttribute('disabled', !entries[index - 1])
@@ -124,10 +124,15 @@
                 doc.head.appendChild(pre)
             }
             if (shadow) {
-                var go = function () {
+                var go = function (n) {
                     shadow.replaceChildren(doc.documentElement)
                 }
-                prev === false ? go() : svt(go, 5)
+                if (prev === false) go()
+                else {
+                    svt(go, 5)
+                    setTimeout(start, 960)
+                    stop()
+                }
             }
             else {
                 frame.src = s
@@ -140,6 +145,19 @@
         //     frame.src = s
         //     updateStatus()
         // }
+    }
+    function stop() {
+        addEventListener('wheel', preventScroll, { passive: false })
+        addEventListener('touchmove', preventScroll, { passive: false })
+        addEventListener('scroll', preventScroll, { passive: false })
+    }
+    function start() {
+        removeEventListener('wheel', preventScroll, { passive: false })
+        removeEventListener('touchmove', preventScroll, { passive: false })
+        removeEventListener('scroll', preventScroll, { passive: false })
+    }
+    function preventScroll(e) {
+        e.preventDefault()
     }
     addEventListener('load', function () {
         d.querySelector('header')
