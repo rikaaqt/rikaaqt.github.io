@@ -1,5 +1,13 @@
 !function (d, ss) {
     'use strict'
+    function importFonts(name, fonts) {
+        if (!d.getElementById(name)) {
+            var n = d.createElement('style')
+            n.textContent = fonts.join('')
+            n.id = name
+            d.head.appendChild(n)
+        }
+    }
     d.getElementById('papercontrols')
         .addEventListener('click', function (n) {
             if (n.target.tagName === 'INPUT') {
@@ -95,9 +103,11 @@
         }
         xhr.send()
     }
+    var imports = /@import url\([^;]+?\);/g
     var url = 'https://doc-entries.addsoupbase1.workers.dev/doc?id='
     function putEntry(prev) {
-        var s = url + entries[index].id
+        var id = entries[index].id
+        var s = url + id
         // if (shadow) {
         var xhr = new XMLHttpRequest
         xhr.open("GET", s, true)
@@ -125,6 +135,9 @@
             }
             if (shadow) {
                 var go = function (n) {
+                    var style = doc.querySelector('style')
+                    var im = style.textContent.match(imports)
+                    im && importFonts(id, im)
                     shadow.replaceChildren(doc.documentElement)
                 }
                 if (prev === false) go()
