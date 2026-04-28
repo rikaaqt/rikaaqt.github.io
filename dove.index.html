@@ -259,17 +259,18 @@ desc = 'page is about rika pika!!!'
             <form method="POST" action="https://drawing-submissions.deno.dev?user=rika" enctype="multipart/form-data"
                 id="paperform">
                 <div id="hi">
-                    <input type="range" value="1" min="1" max="60" step=".1" id="brushsize" aria-label="Brush Size">
-                    <paper-canvas name="drawing" type="file" required id="paper"></paper-canvas>
-                </div>
-                <div role="group" id="papercontrols" aria-label="Paper Controls"
-                    style="margin-bottom:30px;font-size:1.2em">
-                    <input draggable="false" id="colorpicker" type="image"
-                        src="<!--{{return esc`${await dataURI('color.svg')}`}}-->" alt="🎨" aria-label="Color">
-                    <input type="color"
-                         anchor="colorpicker" tabindex="-1" aria-hidden="true" id="color">
-                    <input draggable="false" id="undo" type="image"
-                        src="<!--{{return esc`${await dataURI('undo.svg')}`}}-->" alt="↩️" aria-label="Undo">
+                    <paper-canvas name="drawing" type="file" required id="paper">
+                        <div role="group" slot="controls" id="papercontrols" aria-label="Paper Controls"
+                            style="margin-bottom:30px;font-size:1.2em">
+                            <input type="color" tabindex="-1" aria-hidden="true" id="color">
+                            <input data-is="color" draggable="false" id="colorpicker" type="image"
+                                src="<!--{{return esc`${await dataURI('color.svg')}`}}-->" alt="🎨" aria-label="Color">
+                            <input data-is="undo" draggable="false" id="undo" type="image"
+                                src="<!--{{return esc`${await dataURI('undo.svg')}`}}-->" alt="↩️" aria-label="Undo">
+                        </div>
+                        <input slot="before" data-is="brushsize" type="range" value="1" min="1" max="60" step=".1"
+                            id="brushsize" aria-label="Brush Size">
+                    </paper-canvas>
                 </div>
                 <button type="submit">Send!</button>
             </form>
@@ -287,8 +288,10 @@ desc = 'page is about rika pika!!!'
         </footer>
     </main>
 </body>
-<script src="https://addsoupbase.github.io/aria.js" async></script>
+<script src="https://addsoupbase.github.io/aria.js" async crossorigin="anonymous"></script>
+<script src="../webcomponents/paper-canvas.js" async type="module"
+    crossorigin="anonymous"></script>
 <script><!--{{return await file('xhr.js')}}--></script>
-<script type="module" data-loading="lazy" src="setup.js"></script>
+<script>sessionStorage.removeItem('d')</script>
 
 </html>

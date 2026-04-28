@@ -345,11 +345,10 @@ form {
     position-anchor: --color
 }
 
-@supports (-webkit-touch-callout: none) {
+@supports (font-family: -apple-system) {
     #colorpicker {
-        display: none;
+        display: none !important;
     }
-
     #color {
         display: block;
         z-index: 1;
@@ -397,7 +396,6 @@ picture {
 paper-canvas::before {
     animation: load .6s ease-in-out alternate infinite
 }
-
 @keyframes load {
     0% {
         opacity: 1
@@ -419,8 +417,8 @@ paper-canvas:not(:defined)::before {
 #hi:has(paper-canvas:not(:defined)) {
     padding-right: 0
 }
-#hi {
-    padding-right:16px
+paper-canvas::part(holder) {
+    /* padding-right:16px */
 }
 iframe {
     width: 100%;
@@ -790,18 +788,20 @@ input[type="range"] {
     --user-select: none;
     accent-color: black;
 }
-
+#brushsize {
+    margin-right: 10px
+}
 @media screen and (width <=390px) {
     #brushsize {
         writing-mode: unset;
         order: 1;
+        margin-inline: 0;
         height: unset;
         margin-block: 10px;
         transform: unset;
     }
 
-    #hi {
-        padding-right: 0;
+    paper-canvas::part(holder) {
         display: grid;
     }
 }
