@@ -10,7 +10,14 @@ brushsize.on({
     }
 })
 colorpicker.on({
-    click: color.click.bind(color)
+    click() {
+        try {
+            color.showPicker ? color.showPicker() : color.click()
+        }
+        catch(e) {
+            alert(e)
+        }
+    }
 })
 color.on({
     input() {

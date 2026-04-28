@@ -243,7 +243,7 @@ button[disabled] {
 #controls2 {
     /* gap: 60px; */
     width: 60%;
-    place-items:center;
+    place-items: center;
     place-self: center;
     max-width: 300px;
     display: flex;
@@ -251,12 +251,14 @@ button[disabled] {
     margin: auto;
     margin-block: 10px;
 }
+
 #controls2 button {
     border-radius: 100%;
-    font-size:1.1em;
-    width:40px;
-    height:40px;
+    font-size: 1.1em;
+    width: 40px;
+    height: 40px;
 }
+
 #entries {
     overflow: hidden;
     overflow: clip;
@@ -329,6 +331,34 @@ form {
 
     #diary {
         view-transition-name: diary;
+    }
+}
+
+#color {
+    z-index: -999;
+    pointer-events: none;
+    --user-select: none;
+    transform: translate(-50%, -50%) scale(0);
+    top: anchor(bottom);
+    left: anchor(right);
+    position: absolute;
+    position-anchor: --color
+}
+
+@supports (-webkit-touch-callout: none) {
+    #colorpicker {
+        display: none;
+    }
+
+    #color {
+        display: block;
+        z-index: 1;
+        pointer-events: all;
+        transform: revert;
+        top: revert;
+        left: revert;
+        position: relative;
+        position-anchor: none
     }
 }
 
@@ -695,6 +725,7 @@ button {
     color: black;
     text-shadow: none !important;
 }
+
 button:active {
     transform: scale(.93)
 }
@@ -756,7 +787,18 @@ input[type="range"] {
     --user-select: none;
     accent-color: black;
 }
-
+@media screen and (width <= 390px) {
+    #brushsize {
+        writing-mode: unset;
+        order:1;
+        height: unset;
+        margin-block: 10px;
+        transform: unset;
+    }
+    #hi {
+    display: grid;
+}
+}
 #colorpicker {
     anchor-name: --color
 }

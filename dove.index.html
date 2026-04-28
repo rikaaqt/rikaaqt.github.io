@@ -194,8 +194,9 @@ desc = 'page is about rika pika!!!'
             <p>I love running around my yard, I love playing Roblox, doing my hair, talking to
                 my amazing
                 friends, calling my family, I also really really love to read books about romance! <picture>
-                    <source srcset="emoji/wow.webp" type="image/webp"><img fetchpriority="low" style="width:40px;height:40px"
-                        alt="Exclamation" loading="lazy" class="emoji" src="emoji/wow.png">
+                    <source srcset="emoji/wow.webp" type="image/webp"><img fetchpriority="low"
+                        style="width:40px;height:40px" alt="Exclamation" loading="lazy" class="emoji"
+                        src="emoji/wow.png">
                 </picture>
             </p>
             <h3>My interests!</h3>
@@ -207,16 +208,17 @@ desc = 'page is about rika pika!!!'
                 <li>Roaches</li>
                 <li>Worms</li>
                 <li>mean&nbsp;people!<picture style="display: block;">
-                        <source srcset="./emoji/grumpy.webp" type="image/webp"><img fetchpriority="low" style="width:40px;height:40px"
-                            loading="lazy" src="emoji/grumpy.png" alt="grumpy" class="emoji">
+                        <source srcset="./emoji/grumpy.webp" type="image/webp"><img fetchpriority="low"
+                            style="width:40px;height:40px" loading="lazy" src="emoji/grumpy.png" alt="grumpy"
+                            class="emoji">
                     </picture>
                 </li>
             </ul>
             <h3>EXTRA</h3>
             <p>I love love love love love love love love lovers pink! And all shades of pink, I'm into anime but not as
                 much! <picture>
-                    <source srcset="emoji/blush.webp" type="image/webp"><img fetchpriority="low" style="width:40px;height:40px"
-                        loading="lazy" src="emoji/blush.png" alt="blush" class="emoji">
+                    <source srcset="emoji/blush.webp" type="image/webp"><img fetchpriority="low"
+                        style="width:40px;height:40px" loading="lazy" src="emoji/blush.png" alt="blush" class="emoji">
                 </picture>
             </p>
             <h4 style="margin-bottom: 0;"><strong>MY FAVORITE SANRIO CHARACTER IS POMPOMPURIN</strong></h4>
@@ -228,8 +230,8 @@ desc = 'page is about rika pika!!!'
             <h4>And a little extra where I got my name from</h4>
             <p>MY NAME ORIGINALLY AND WAS RIKA, BUT I USE RIKA PIKA COS THATS WHAT MY FRIEND GAVE ME AS A LITTLE
                 NICKNAME SO IVE JUST BEEN USING IT EVER SINCEE <picture>
-                    <source srcset="emoji/excited.webp" type="image/webp"><img fetchpriority="low" loading="lazy" class="emoji"
-                        style="width:40px;height:40px" src="emoji/excited.png" alt="excited">
+                    <source srcset="emoji/excited.webp" type="image/webp"><img fetchpriority="low" loading="lazy"
+                        class="emoji" style="width:40px;height:40px" src="emoji/excited.png" alt="excited">
                 </picture>
             </p>
             <h5>One more thing!</h5>
@@ -264,14 +266,13 @@ desc = 'page is about rika pika!!!'
                     style="margin-bottom:30px;font-size:1.2em">
                     <input draggable="false" id="colorpicker" type="image"
                         src="<!--{{return esc`${await dataURI('color.svg')}`}}-->" alt="🎨" aria-label="Color">
+                    <input type="color"
+                         anchor="colorpicker" tabindex="-1" aria-hidden="true" id="color">
                     <input draggable="false" id="undo" type="image"
                         src="<!--{{return esc`${await dataURI('undo.svg')}`}}-->" alt="↩️" aria-label="Undo">
                 </div>
                 <button type="submit">Send!</button>
             </form>
-            <input type="color"
-                style="z-index:-999;pointer-events:none;--user-select:none;transform:translate(-50%,-50%) scale(0);top:anchor(bottom);left:anchor(right);position: absolute;position-anchor:--color"
-                anchor="colorpicker" tabindex="-1" aria-hidden="true" id="color">
         </section>
         <footer class="box">
             <section>
@@ -289,4 +290,5 @@ desc = 'page is about rika pika!!!'
 <script src="https://addsoupbase.github.io/aria.js" async></script>
 <script><!--{{return await file('xhr.js')}}--></script>
 <script type="module" data-loading="lazy" src="setup.js"></script>
+
 </html>
