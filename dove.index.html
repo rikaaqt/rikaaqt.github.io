@@ -292,6 +292,16 @@ desc = 'page is about rika pika!!!'
 <script src="https://addsoupbase.github.io/webcomponents/paper-canvas.js" async type="module"
     crossorigin="anonymous"></script>
 <script><!--{{return await file('xhr.js')}}--></script>
-<script>sessionStorage.removeItem('d')</script>
+<script>
+!function(d) {
+    'use strict'
+    sessionStorage.removeItem('d')
+    var x = d.getElementById('color')
+    d.getElementById('colorpicker')
+    .onclick = function() {
+        x.showPicker ? x.showPicker() : x.click()
+    }
+}(document)
+</script>
 
 </html>
