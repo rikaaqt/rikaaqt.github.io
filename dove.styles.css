@@ -345,7 +345,7 @@ form {
     position-anchor: --color
 }
 
-@supports (font-family: -apple-system) {
+@supports (-webkit-appearance: -apple-pay-button) {
     #colorpicker {
         display: none !important;
     }
