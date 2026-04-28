@@ -342,16 +342,24 @@ form {
     top: anchor(bottom);
     left: anchor(right);
     position: absolute;
-    position-anchor: --color
+    position-anchor: --color;
+    text-decoration-color: rgba(255, 0, 0, 0.721)
 }
 
-@supports (-webkit-appearance: -apple-pay-button) {
+#color:invalid {
+    text-decoration-style: wavy;
+    text-decoration-line: underline;
+}
+
+@supports (-webkit-appearance: -apple-pay-button) or (-moz-force-broken-image-icon: 1) {
     #colorpicker {
         display: none !important;
     }
+
     #color {
         display: block;
         z-index: 1;
+        cursor: pointer;
         pointer-events: all;
         transform: revert;
         top: revert;
@@ -396,6 +404,7 @@ picture {
 paper-canvas::before {
     animation: load .6s ease-in-out alternate infinite
 }
+
 @keyframes load {
     0% {
         opacity: 1
@@ -417,9 +426,11 @@ paper-canvas:not(:defined)::before {
 #hi:has(paper-canvas:not(:defined)) {
     padding-right: 0
 }
+
 paper-canvas::part(holder) {
     /* padding-right:16px */
 }
+
 iframe {
     width: 100%;
     height: 400px;
@@ -782,15 +793,16 @@ p {
 }
 
 input[type="range"] {
-    writing-mode: vertical-lr;
+    writing-mode: sideways-lr;
     height: 250px;
-    transform: rotate(180deg);
     --user-select: none;
     accent-color: black;
 }
+
 #brushsize {
     margin-right: 10px
 }
+
 @media screen and (width <=390px) {
     #brushsize {
         writing-mode: unset;
