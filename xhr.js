@@ -138,6 +138,7 @@
                     var style = doc.querySelector('style')
                     var im = style.textContent.match(imports)
                     im && importFonts(id, im)
+                    console.log(imports)
                     shadow.replaceChildren(doc.documentElement)
                 }
                 if (prev === false) go()

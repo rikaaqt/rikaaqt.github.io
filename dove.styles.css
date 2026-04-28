@@ -785,7 +785,8 @@ p {
     place-content: center;
 }
 
-#papercontrols>input {
+#papercontrols>input,
+#reset {
     width: 40px;
     --user-select: none;
     height: auto;
@@ -822,7 +823,7 @@ input[type="range"] {
     anchor-name: --color
 }
 
-#papercontrols>input:hover {
+:is(#papercontrols>input, #reset):hover {
     transform: scale(1.05);
     /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.416)) */
 }
@@ -833,8 +834,31 @@ input[type="range"] {
     }
 }
 
-#papercontrols>input:active {
+:is(#papercontrols>input, #reset):active {
     transform: scale(.98);
+}
+
+#paperform:has(paper-canvas:invalid) #reset {
+    display: none;
+
+}
+
+#reset:hover {
+    filter: drop-shadow(2px 2px 0px red)
+}
+
+#reset {
+    transition: transform .1s ease-out;
+    left: 10px;
+    top: 10px;
+    background-size: 100%;
+    background-image: url("/*:return esc`${await dataURI(' bomb.svg')}`*/");
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    position: absolute;
+    height: 30px
 }
 
 /* input[type="range"]:hover:not(:active) {
