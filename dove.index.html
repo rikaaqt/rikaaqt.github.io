@@ -262,7 +262,7 @@ desc = 'page is about rika pika!!!'
                     <paper-canvas name="drawing" type="file" required id="paper">
                         <div role="group" slot="controls" id="papercontrols" aria-label="Paper Controls"
                             style="margin-bottom:30px;font-size:1.2em">
-                            <input data-is="color"  type="color" tabindex="-1" aria-hidden="true" id="color">
+                            <input data-is="color"  type="color" tabindex="-1" aria-hidden="true" id="color" value="#000000">
                             <input draggable="false" id="colorpicker" type="image"
                                 src="<!--{{return esc`${await dataURI('color.svg')}`}}-->" alt="🎨" aria-label="Color">
                             <input data-is="undo" draggable="false" id="undo" type="image"
