@@ -827,10 +827,12 @@ input[type="range"] {
     transform: scale(1.05);
     /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.416)) */
 }
-
-@supports not selector(:defined) {
+#drawmesomething {
+    display: none;
+}
+@supports selector(:defined) {
     #drawmesomething {
-        display: none
+        display: grid
     }
 }
 
@@ -848,7 +850,6 @@ input[type="range"] {
 }
 
 #reset {
-    transition: transform .1s ease-out;
     left: 10px;
     top: 10px;
     background-size: 100%;

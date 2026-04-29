@@ -101,6 +101,10 @@
             length = entries.length
             putEntry(false)
         }
+        xhr.onerror = function () {
+            if (shadow) { shadow.innerHTML = '<samp>Error</samp>' }
+            else di.textContent = 'Error'
+        }
         xhr.send()
     }
     var imports = /@import url\([^;]+?\);/g
@@ -109,11 +113,14 @@
         var id = entries[index].id
         var s = url + id
         // if (shadow) {
+        var doc
         var xhr = new XMLHttpRequest
+        var errored = null
         xhr.open("GET", s, true)
         // xhr.responseType = 'document'
         xhr.onload = function () {
-            var doc = new DOMParser().parseFromString(xhr.responseText, 'text/html')
+            errored = false
+            doc = new DOMParser().parseFromString(xhr.responseText, 'text/html')
             lastTime = new Date(xhr.getResponseHeader('Last-Modified'))
             // var style = doc.head.querySelector('style')
             // style.textContent = '@scope {' + style.textContent + '}'
@@ -126,32 +133,44 @@
             style.minHeight = '90%'
             style.fontSize = '.9em'
             style.backgroundColor = 'transparent'
+        }
+        xhr.onloadend = function () {
             var p = entries[index + 1]
-            if (prev === 2 && p) {
+            if (prev === 2 && p && errored === false) {
                 var pre = d.createElement('link')
                 pre.rel = 'prefetch'
                 pre.href = url + p.id
                 doc.head.appendChild(pre)
             }
-            if (shadow) {
-                var go = function (n) {
+            if (errored) {
+                if (shadow) {
+                }
+                else {
+                    frame.src = s
+                }
+            }
+            var go = function (n) {
+                if (errored === false) {
                     var style = doc.querySelector('style')
                     var im = style.textContent.match(imports)
                     im && importFonts(id, im)
-                    console.log(imports)
+                    if (!doc.body.textContent.trim()) doc.documentElement.innerHTML = '<samp style="font-style:italic">Document was empty.</samp>'
                     shadow.replaceChildren(doc.documentElement)
                 }
-                if (prev === false) go()
-                else {
-                    svt(go, 5)
-                    setTimeout(start, 960)
-                    stop()
-                }
             }
+            if (prev === false) go()
             else {
-                frame.src = s
+                svt(go, 5)
+                setTimeout(start, 960)
+                stop()
             }
             updateStatus()
+        }
+        xhr.onerror = function () {
+            errored = true
+            setTimeout(function(){
+                shadow.innerHTML = '<samp style="font-style:italic">Error</samp>'
+            }, 400)
         }
         xhr.send()
         // }
