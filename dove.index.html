@@ -151,33 +151,15 @@ desc = 'page is about rika pika!!!'
                     <img id="bunny" class="img" src="bunny.jpg" alt="Bunny" fetchpriority="low">
                 </picture>
                 <audio controls preload="none" id="audio" data-pressed="false">
-                    <source
-                        src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
-                        type="audio/mp3">
-                    <source
-                        src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
-                        type="audio/mp4">
-                    <source
-                        src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
-                        type="audio/m4a">
-                    <source
-                        src="https://www.dropbox.com/scl/fi/6rkl01vyeol3vap3e6a5k/the_cat_from_ipanema.mp3?rlkey=ica72dvo7yo26r4enku37x0c3&st=k2itr9c6&dl=0&raw=1"
-                        type="audio/mpeg">
-                    <!-- <source
-                        src="https://www.dropbox.com/scl/fi/dtcg1j3a5yeip4othf8d7/NOBLE.m4a?rlkey=jfnxe4vuqk4z6pstmxazz0bf5&st=1m38ashi&dl=0&raw=1"
-                        type="audio/mp4">
-                    <source
-                        src="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1"
-                        type="audio/mp3">
-                        <source
-                        src="https://www.dropbox.com/scl/fi/q8xj071i81xrb5ot5den0/NOBLE.mp3?rlkey=aix7sjuaua2sqji607zc8nd8s&st=mz0bxdp9&dl=0&raw=1"
-                        type="audio/mpeg">
-                        <source src="https://www.dropbox.com/scl/fi/2fzcjwhbk2yy5iiyx22ze/NOBLE.ogg?rlkey=3jsgqg4vyidm5mt7cpt0zy23z&st=czrblbf9&dl=0&raw=1"
-                        type="audio/ogg"> -->
+                    <source type="audio/ogg"
+                        src="https://www.dropbox.com/scl/fi/rd679twgox04wa41gt7ck/NotCuteAnymore.ogg?rlkey=zkc2wzab3926t636vkqsbebpl&st=85wg8osr&dl=0&raw=1">
+                    <source type="audio/mp3"
+                        src="https://www.dropbox.com/scl/fi/9ge8vpgqu60hw1sa8oyvf/NotCuteAnymore.mp3?rlkey=nhqf6zyqtz4hwk89ss49vuzdv&st=a9yari79&dl=0&raw=1">
+                    <source type="audio/mp4"
+                        src="https://www.dropbox.com/scl/fi/9ge8vpgqu60hw1sa8oyvf/NotCuteAnymore.mp3?rlkey=nhqf6zyqtz4hwk89ss49vuzdv&st=a9yari79&dl=0&raw=1">
                 </audio>
                 <div class="textbox" tabindex="0" role="button">
-                    <marquee scrollamount="3"><label for="audio">Click to play <cite style="cursor:pointer;">the cat
-                                from ipanema</cite> by j1gggs!</label></marquee>
+                    <marquee scrollamount="3"><label for="audio">Click to play <cite style="cursor:pointer;">NOT CUTE ANYMORE</cite> by ILLIT!</label></marquee>
                 </div>
             </div>
         </section>
@@ -262,14 +244,15 @@ desc = 'page is about rika pika!!!'
                     <paper-canvas name="drawing" type="file" required id="paper">
                         <div role="group" slot="controls" id="papercontrols" aria-label="Paper Controls"
                             style="margin-bottom:30px;font-size:1.2em">
-                            <input data-is="color"  type="color" tabindex="-1" aria-hidden="true" id="color" value="#000000">
+                            <input data-is="color" type="color" tabindex="-1" aria-hidden="true" id="color"
+                                value="#000000">
                             <input draggable="false" id="colorpicker" type="image"
                                 src="<!--{{return esc`${await dataURI('color.svg')}`}}-->" alt="🎨" aria-label="Color">
                             <input data-is="undo" draggable="false" id="undo" type="image"
                                 src="<!--{{return esc`${await dataURI('undo.svg')}`}}-->" alt="↩️" aria-label="Undo">
                         </div>
-                        <input slot="before" style="accent-color:var(--brush-color)" data-is="brushsize" type="range" value="1" min="1" max="60" step=".1"
-                            id="brushsize" aria-label="Brush Size">
+                        <input slot="before" style="accent-color:var(--brush-color)" data-is="brushsize" type="range"
+                            value="1" min="1" max="60" step=".1" id="brushsize" aria-label="Brush Size">
                     </paper-canvas>
                 </div>
                 <input type="reset" id="reset" value="" form="paperform" aria-label="Reset" title="Reset">
@@ -294,15 +277,15 @@ desc = 'page is about rika pika!!!'
     crossorigin="anonymous"></script>
 <script><!--{{return await file('xhr.js')}}--></script>
 <script>
-!function(d) {
-    'use strict'
-    sessionStorage.removeItem('d')
-    var x = d.getElementById('color')
-    d.getElementById('colorpicker')
-    .onclick = function() {
-        x.showPicker ? x.showPicker() : x.click()
-    }
-}(document)
+    !function (d) {
+        'use strict'
+        sessionStorage.removeItem('d')
+        var x = d.getElementById('color')
+        d.getElementById('colorpicker')
+            .onclick = function () {
+                x.showPicker ? x.showPicker() : x.click()
+            }
+    }(document)
 </script>
 
 </html>

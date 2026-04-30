@@ -127,11 +127,12 @@
             // di.replaceChildren.apply(di, doc.body.childNodes)
             // di.appendChild(style)
             var style = doc.body.style
-            style.padding = '10px'
-            style.paddingInline = '20px'
+            style.padding = '0px'
+            style.paddingLeft = style.paddingTop = style.paddingBottom = '10px'
+            style.wordWrap = style.wordBreak = style.overflowWrap = 'break-word'
             doc.documentElement.style.height = '97%'
             style.minHeight = '90%'
-            style.fontSize = '.9em'
+            style.zoom = '.9'
             style.backgroundColor = 'transparent'
         }
         xhr.onloadend = function () {
@@ -152,6 +153,7 @@
             var go = function (n) {
                 if (errored === false) {
                     var style = doc.querySelector('style')
+                    style.textContent +=('img {max-width: 73%;margin:0;height:auto !important}')
                     var im = style.textContent.match(imports)
                     im && importFonts(id, im)
                     if (!doc.body.textContent.trim()) doc.documentElement.innerHTML = '<samp style="font-style:italic">Document was empty.</samp>'
@@ -168,7 +170,7 @@
         }
         xhr.onerror = function () {
             errored = true
-            setTimeout(function(){
+            setTimeout(function () {
                 shadow.innerHTML = '<samp style="font-style:italic">Error</samp>'
             }, 400)
         }

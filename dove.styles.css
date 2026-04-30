@@ -262,7 +262,19 @@ button[disabled] {
 #entries {
     overflow: hidden;
     overflow: clip;
-    contain: paint
+    contain: paint;
+    /* background-image: url("cupcake1.png"), url("cupcake2.png"), url("cupcake3.png"), url("cupcake4.png");
+    background-image:
+        image-set(url("cupcake1.webp") type("image/webp"), url("cupcake1.png") type("image/png")),
+        image-set(url("cupcake2.webp") type("image/webp"), url("cupcake2.png") type("image/png")),
+        image-set(url("cupcake3.webp") type("image/webp"), url("cupcake3.png") type("image/png")),
+        image-set(url("cupcake4.webp") type("image/webp"), url("cupcake4.png") type("image/png"));
+        background-repeat: no-repeat; */
+     /*:
+     return'background-size:'+Array(4).fill('70px 70px').join(',') + ';'
+     +'background-position-x:' + Array.from({length:4}, (_, i) => `${(i/3) * 100}%`).join(',')
+     */
+     
 }
 
 form {
@@ -827,9 +839,11 @@ input[type="range"] {
     transform: scale(1.05);
     /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.416)) */
 }
+
 #drawmesomething {
     display: none;
 }
+
 @supports selector(:defined) {
     #drawmesomething {
         display: grid
