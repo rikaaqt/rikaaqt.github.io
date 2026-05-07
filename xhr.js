@@ -83,6 +83,21 @@
     })
     var frame
     function doDiaryStuffs() {
+    // <link id="14oimrzL7bA2xK2wiWhAqAh8r_s94g8d38YyoEL4yrdI" rel="stylesheet"
+        // href="https://themes.googleusercontent.com/fonts/css?kit=83sl0Ypxz7lryjRdaYZp1Q" crossorigin="anonymous">
+        var head = d.head
+        ;['themes.googleusercontent.com', 'images.weserv.nl', 'doc-entries.addsoupbase1.workers.dev']
+        .forEach(function(o) {
+            var l = d.createElement('link')
+            l.rel = 'preconnect'
+            l.href = 'https://' + o
+            head.appendChild(l)
+        })
+        var l = d.createElement('link')
+        l.rel = 'stylesheet'
+        l.href = "https://themes.googleusercontent.com/fonts/css?kit=83sl0Ypxz7lryjRdaYZp1Q"
+        l.setAttribute('crossorigin', 'anonymous')
+        head.appendChild(l)
         try {
             shadow = (di.attachShadow || di.createShadowRoot).call(di, { mode: 'open' })
         }
@@ -128,7 +143,8 @@
             // di.appendChild(style)
             var style = doc.body.style
             style.padding = '0px'
-            style.paddingLeft = style.paddingTop = style.paddingBottom = '10px'
+            style.paddingBottom = '17px'
+            // style.paddingLeft = style.paddingTop = style.paddingBottom = '10px'
             style.wordWrap = style.wordBreak = style.overflowWrap = 'break-word'
             doc.documentElement.style.height = '97%'
             style.minHeight = '90%'
@@ -153,14 +169,21 @@
             var go = function (n) {
                 if (errored === false) {
                     var style = doc.querySelector('style')
-                    style.textContent +=('img{margin-block: 4% !important;max-width:100% !important; height:auto !important}.image{height: auto !important;max-width:100% !important;margin:0 !important;}')
+                    style.textContent += '.para{padding: 4px 0 0 8px !important}img{margin-block: 4% !important;max-width:90% !important; height:auto !important}.image{height: auto !important;max-width:100% !important;margin:0 !important;}'
                     // var im = style.textContent.match(imports)
                     // im && importFonts(id, im)
                     if (!doc.body.textContent.trim()) doc.documentElement.innerHTML = '<samp style="font-style:italic">Document was empty.</samp>'
-                    ;[].forEach.call(doc.getElementsByTagName('img'), function(o){ 
-                        o.loading = 'lazy'
-                        o.parentElement.classList.add('image')
-                    })
+                        ;[].forEach.call(doc.getElementsByTagName('p'), function (o) {
+                            o.classList.add('para')
+                        })
+                        ;[].forEach.call(doc.getElementsByTagName('img'), function (o) {
+                            o.loading = 'lazy'
+                            var pa = o.parentElement
+                            pa.classList.add('image')
+                            pa.style.textAlign = 'center'
+                            var n = o.closest('p')
+                            n && (n.classList.remove('para'), n.style.textAlign = 'center')
+                        })
                     shadow.replaceChildren(doc.documentElement)
                 }
             }
