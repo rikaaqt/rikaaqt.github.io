@@ -83,16 +83,16 @@
     })
     var frame
     function doDiaryStuffs() {
-    // <link id="14oimrzL7bA2xK2wiWhAqAh8r_s94g8d38YyoEL4yrdI" rel="stylesheet"
+        // <link id="14oimrzL7bA2xK2wiWhAqAh8r_s94g8d38YyoEL4yrdI" rel="stylesheet"
         // href="https://themes.googleusercontent.com/fonts/css?kit=83sl0Ypxz7lryjRdaYZp1Q" crossorigin="anonymous">
         var head = d.head
-        ;['themes.googleusercontent.com', 'images.weserv.nl', 'doc-entries.addsoupbase1.workers.dev']
-        .forEach(function(o) {
-            var l = d.createElement('link')
-            l.rel = 'preconnect'
-            l.href = 'https://' + o
-            head.appendChild(l)
-        })
+            ;['themes.googleusercontent.com', 'images.weserv.nl', 'doc-entries.addsoupbase1.workers.dev']
+                .forEach(function (o) {
+                    var l = d.createElement('link')
+                    l.rel = 'preconnect'
+                    l.href = 'https://' + o
+                    head.appendChild(l)
+                })
         var l = d.createElement('link')
         l.rel = 'stylesheet'
         l.href = "https://themes.googleusercontent.com/fonts/css?kit=83sl0Ypxz7lryjRdaYZp1Q"
@@ -186,6 +186,7 @@
                         })
                     shadow.replaceChildren(doc.documentElement)
                 }
+                di.scrollTop = 0
             }
             if (prev === false) go()
             else {
