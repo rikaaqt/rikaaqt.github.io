@@ -153,10 +153,14 @@
             var go = function (n) {
                 if (errored === false) {
                     var style = doc.querySelector('style')
-                    style.textContent +=('img {max-width: 73%;margin:0;height:auto !important}')
-                    var im = style.textContent.match(imports)
-                    im && importFonts(id, im)
+                    style.textContent +=('img{margin-block: 4% !important;max-width:100% !important; height:auto !important}.image{height: auto !important;max-width:100% !important;margin:0 !important;}')
+                    // var im = style.textContent.match(imports)
+                    // im && importFonts(id, im)
                     if (!doc.body.textContent.trim()) doc.documentElement.innerHTML = '<samp style="font-style:italic">Document was empty.</samp>'
+                    ;[].forEach.call(doc.getElementsByTagName('img'), function(o){ 
+                        o.loading = 'lazy'
+                        o.parentElement.classList.add('image')
+                    })
                     shadow.replaceChildren(doc.documentElement)
                 }
             }
