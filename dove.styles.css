@@ -45,12 +45,15 @@ nav {
     left: -10%;
     transform: translate(-50%, -50%);
     width: 20px;
+    transition: filter .3s ease;
     height: 20px;
     display: inline-block;
     background-size: 100%;
     vertical-align: baseline;
 }
-
+.social:hover::before {
+    filter: brightness(150%)
+}
 #roblox::before {
     width: 24px;
     height: 24px;
@@ -63,7 +66,7 @@ nav {
 #tiktok::before {
     width: 18px;
     height: 18px;
-    left: -30%;
+    left: -10%;
     content: '' / "TikTok";
     background-image: url(tiktok.svg)
 }
@@ -439,8 +442,8 @@ paper-canvas:not(:defined)::before {
     padding-right: 0
 }
 
-paper-canvas::part(holder) {
-    /* padding-right:16px */
+paper-canvas::part(paper) {
+    outline-color: var(--_DARKER_PINK)
 }
 
 iframe {
@@ -514,7 +517,7 @@ iframe {
 #abt {
     background-image: url(decor1.png), url(decor2.png), url(decor3.png);
     background-repeat: no-repeat;
-    background-position: 102% 43%, 0px 4px, 3px 34%;
+    background-position: 109% 42.6%, 0px 4px, 3px 34%;
     background-size: 45% auto, 20% auto, 30% auto;
     background-size: min(45%, 240px) auto, min(20%, 141px), min(30%, 180px);
     background-image: image-set(url(decor1.webp) type("image/webp"), url(decor1.png) type("image/png")),

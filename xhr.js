@@ -163,9 +163,7 @@
             var go = function (n) {
                 if (errored === false) {
                     var style = doc.querySelector('style')
-                    style.textContent += '.para{padding: 4px 0 0 8px !important}img{margin-block: 4% !important;max-width:90% !important;max-width:min(90%, 60vw) !important;height:auto !important}.image{height: auto !important;max-width:100% !important;margin:0 !important;}'
-                    // var im = style.textContent.match(imports)
-                    // im && importFonts(id, im)
+                    style.textContent = style.textContent.replace(imports, '') + '.para{padding: 4px 0 0 8px !important}img{margin-block: 4% !important;max-width:90% !important;max-width:min(90%, 60vw) !important;height:auto !important}.image{height: auto !important;max-width:100% !important;margin:0 !important;}'
                     if (!doc.body.textContent.trim()) doc.documentElement.innerHTML = '<samp style="font-style:italic">Document was empty.</samp>'
                         ;[].forEach.call(doc.getElementsByTagName('p'), function (o) {
                             o.classList.add('para')
@@ -186,8 +184,8 @@
             if (prev === null) go()
             else {
                 svt(go, 5)
-                setTimeout(start, 960)
-                stop()
+                setTimeout(startScroll, 960)
+                stopScroll()
             }
             updateStatus()
         }
@@ -204,12 +202,12 @@
         //     updateStatus()
         // }
     }
-    function stop() {
+    function stopScroll() {
         addEventListener('wheel', preventScroll, { passive: false })
         addEventListener('touchmove', preventScroll, { passive: false })
         addEventListener('scroll', preventScroll, { passive: false })
     }
-    function start() {
+    function startScroll() {
         removeEventListener('wheel', preventScroll, { passive: false })
         removeEventListener('touchmove', preventScroll, { passive: false })
         removeEventListener('scroll', preventScroll, { passive: false })
@@ -218,14 +216,6 @@
         e.preventDefault()
     }
     addEventListener('load', function () {
-        d.querySelector('header')
-            .oncontentvisibilityautostatechange = function (e) {
-                if (e.skipped) {
-                    // d.head.appendChild(d.createRange().createContextualFragment('<link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev"><link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json" crossorigin="anonymous">'))
-                    this.oncontentvisibilityautostatechange = null
-                    this.style.contentVisibility = ''
-                }
-            }
         if (typeof IntersectionObserver === 'function') {
             var ie = new IntersectionObserver(function (n) {
                 if (n[0].isIntersecting) {
