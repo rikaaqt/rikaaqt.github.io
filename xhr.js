@@ -61,7 +61,7 @@
         st.textContent = (length - index) + ' of ' + length
         var t = entries[index]
         time.setAttribute('datetime', lastTime.toISOString().slice(0, 10))
-        time.textContent = lastTime.toLocaleDateString() + ' ' + lastTime.toLocaleTimeString()
+        time.textContent = lastTime.toLocaleDateString()
         toggleButtons()
         title.textContent = t.name
         di.ariaPosInSet = index + 1
@@ -221,7 +221,7 @@
         d.querySelector('header')
             .oncontentvisibilityautostatechange = function (e) {
                 if (e.skipped) {
-                    d.head.appendChild(d.createRange().createContextualFragment('<link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev"><link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json" crossorigin="anonymous">'))
+                    // d.head.appendChild(d.createRange().createContextualFragment('<link rel="preconnect" href="https://doc-entries.addsoupbase1.workers.dev"><link rel="preload" as="fetch" href="https://doc-entries.addsoupbase1.workers.dev/docs" type="application/json" crossorigin="anonymous">'))
                     this.oncontentvisibilityautostatechange = null
                     this.style.contentVisibility = ''
                 }
